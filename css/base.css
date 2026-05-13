@@ -1,0 +1,247 @@
+/* ─────────────────────────────────────────────────────────────
+   base.css  –  Shared styles: reset, tokens, navbar, footer
+   Each page has its own CSS file for page-specific rules.
+──────────────────────────────────────────────────────────────── */
+
+/* ── 1. Google Font ── */
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500&display=swap');
+
+/* ── 2. Design tokens ── */
+:root {
+  /* Palette */
+  --clr-bg:        #07080f;
+  --clr-surface:   #0d0f1c;
+  --clr-border:    rgba(255,255,255,.07);
+  --clr-accent1:   #7c5cfc;   /* purple */
+  --clr-accent2:   #38bdf8;   /* sky blue */
+  --clr-text:      #e8eaf0;
+  --clr-muted:     #6b7280;
+
+  /* Typography */
+  --font-display: 'Syne', sans-serif;
+  --font-body:    'Inter', sans-serif;
+
+  /* Spacing */
+  --nav-h: 64px;
+}
+
+/* ── 3. Reset ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--clr-bg);
+  color: var(--clr-text);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+  /* Subtle grid pattern — override with 'none' in page CSS if unwanted */
+  background-image:
+    linear-gradient(rgba(124,92,252,.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(124,92,252,.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+main { flex: 1; }
+
+a { color: inherit; text-decoration: none; }
+ul { list-style: none; }
+img { display: block; max-width: 100%; }
+
+/* ── 4. Navbar ── */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  min-height: var(--nav-h);  /* min- so content is never clipped */
+  overflow: visible;          /* let descenders breathe past the boundary */
+  /* glass-morphism bar */
+  background: rgba(7,8,15,.75);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--clr-border);
+}
+
+.nav-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  min-height: var(--nav-h);  /* match parent, never hard-clip */
+  overflow: visible;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+/* Brand */
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: .65rem;
+  flex-shrink: 0;
+  overflow: visible;   /* let descenders render outside tight flex bounds */
+}
+
+.nav-avatar {
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  flex-shrink: 0;
+  border-radius: 8px;
+  background: linear-gradient(135deg, var(--clr-accent1), var(--clr-accent2));
+  font-family: 'Arial Narrow', Arial, sans-serif;
+  font-weight: 700;
+  font-size: .85rem;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  letter-spacing: .01em;
+  line-height: 1;
+}
+
+.nav-name {
+  font-family: var(--font-body);   /* Inter — normal descender metrics, no clipping */
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--clr-text);
+  line-height: normal;
+}
+
+/* Links */
+.nav-links {
+  display: flex;
+  gap: .25rem;
+  margin-left: auto;
+}
+
+.nav-links a {
+  font-family: var(--font-display);
+  font-size: .875rem;
+  font-weight: 600;
+  color: var(--clr-muted);
+  padding: .4rem .8rem;
+  border-radius: 6px;
+  transition: color .2s, background .2s;
+  position: relative;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--clr-text);
+}
+
+/* underline accent on active */
+.nav-links a.active::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  height: 2px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--clr-accent1), var(--clr-accent2));
+}
+
+/* Social icons */
+.nav-social {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  margin-left: 1.5rem;
+  flex-shrink: 0;
+}
+
+.nav-social a {
+  color: var(--clr-muted);
+  display: flex;
+  align-items: center;
+  transition: color .2s;
+}
+.nav-social a:hover { color: var(--clr-text); }
+
+/* Hamburger (hidden on desktop) */
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: .4rem;
+  margin-left: auto;
+}
+.nav-hamburger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--clr-text);
+  border-radius: 2px;
+  transition: transform .3s, opacity .3s;
+}
+
+/* Mobile menu */
+.nav-mobile-menu {
+  display: none;
+  flex-direction: column;
+  background: var(--clr-surface);
+  border-top: 1px solid var(--clr-border);
+  padding: 1rem 2rem;
+  gap: .25rem;
+}
+.nav-mobile-menu.open { display: flex; }
+.nav-mobile-menu a {
+  font-family: var(--font-display);
+  font-size: .95rem;
+  font-weight: 600;
+  color: var(--clr-muted);
+  padding: .6rem 0;
+  border-bottom: 1px solid var(--clr-border);
+  transition: color .2s;
+}
+.nav-mobile-menu a:last-child { border-bottom: none; }
+.nav-mobile-menu a:hover,
+.nav-mobile-menu a.active { color: var(--clr-accent1); }
+
+/* ── 5. Footer ── */
+.footer {
+  border-top: 1px solid var(--clr-border);
+  background: var(--clr-surface);
+  padding: 1.5rem 2rem;
+}
+
+.footer-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.footer-copy {
+  font-size: .8rem;
+  color: var(--clr-muted);
+}
+
+.footer-social {
+  display: flex;
+  gap: 1.25rem;
+}
+.footer-social a {
+  font-size: .8rem;
+  color: var(--clr-muted);
+  transition: color .2s;
+}
+.footer-social a:hover { color: var(--clr-accent2); }
+
+/* ── 6. Responsive ── */
+@media (max-width: 700px) {
+  .nav-links,
+  .nav-social     { display: none; }
+  .nav-hamburger  { display: flex; }
+}

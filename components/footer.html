@@ -1,0 +1,15 @@
+<footer class="footer">
+  <div class="footer-inner">
+    <p class="footer-copy">&copy; <span id="footerYear"></span> 2026 Lim Dong Xian — Built with ☕ &amp; curiosity.</p>
+    <div class="footer-social">
+      <a href="https://github.com/limdx006"   target="_blank" aria-label="GitHub">GitHub</a>
+      <a href="https://www.linkedin.com/in/dongxian-lim-78933a319/" target="_blank" aria-label="LinkedIn">LinkedIn</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Inject current year without a separate call
+  const y = document.getElementById('footerYear');
+  if (y) y.textContent = new Date().getFullYear();
+</script>

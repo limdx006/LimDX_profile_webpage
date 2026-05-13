@@ -1,0 +1,38 @@
+/* ─────────────────────────────────────────────────────────────
+   index.css  –  Page-specific styles for index.html (About)
+──────────────────────────────────────────────────────────────── */
+
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 64px);  /* full viewport minus nav */
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+.hero-content {
+  max-width: 560px;
+}
+
+.hero-greeting {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -.02em;
+  margin-bottom: 1.25rem;
+}
+
+.hero-greeting span {
+  background: linear-gradient(135deg, var(--clr-accent1), var(--clr-accent2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-sub {
+  font-size: 1.1rem;
+  color: var(--clr-muted);
+  line-height: 1.7;
+}
