@@ -54,7 +54,7 @@
     if (menu) menu.classList.toggle('open');
   };
 
-  /* ── Bootstrap ──────────────────────────────────────────────── */
+  /* Bootstrap */
   var root = '/components/'; // adjust if your folder depth differs
 
   Promise.all([
