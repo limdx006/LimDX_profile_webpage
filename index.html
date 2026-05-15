@@ -3,91 +3,85 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Lim Dong Xian — About</title>
+  <title>Lim Dong Xian — Portfolio</title>
 
-  <!-- 1. Design tokens (colours, fonts, spacing) -->
+  <!-- Styles -->
   <link rel="stylesheet" href="/css/tokens.css" />
-  <!-- 2. Shared styles (nav, footer, reset) -->
   <link rel="stylesheet" href="/css/base.css" />
-  <!-- 3. Page-specific styles -->
   <link rel="stylesheet" href="/css/index.css" />
 </head>
 <body>
 
-  <!-- Navbar injected here by include.js -->
-  <div id="navbar-placeholder"></div>
+  <!-- Top nav bar -->
+  <nav class="navbar">
+    <div class="nav-inner">
+      <a href="/" class="nav-brand">
+        <span class="nav-avatar">DX</span>
+        <span class="nav-name">Limdx</span>
+      </a>
 
-  <!-- Page content -->
-  <main>
-    <section class="hero">
-      <div class="hero-content">
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
 
-        <div class="hero-left">
-          <p class="hero-hi">Hi, I am</p>
-
-          <h1 class="hero-name">
-            <span class="line" data-text="Lim">Lim</span>
-            <span class="line" data-text="Dong Xian">Dong Xian</span>
-          </h1>
-
-          <p class="hero-degree">
-            Bachelor of <span class="highlight">Information Technology</span>
-          </p>
-
-          <p class="hero-desc">
-            Bachelor of Information Technology graduate with a passion for technology and continuous learning.
-            Interested in software development, cybersecurity, artificial intelligence, and data-driven solutions,
-            with a strong interest in building practical projects and exploring new technologies.
-          </p>
-        </div>
-
-        <!-- Info card -->
-        <aside class="hero-card">
-          <div class="card-status">
-            <span class="status-dot"></span>
-            Available for Work
-          </div>
-
-          <ul class="card-info">
-            <li><span class="card-icon">📍</span> Singapore</li>
-            <li><span class="card-icon">🎓</span> BIT Graduate</li>
-            <li><span class="card-icon">💻</span> Tech Enthusiast</li>
-          </ul>
-
-          <div class="card-divider"></div>
-
-          <div class="card-links">
-            <a href="https://github.com/limdx006" target="_blank" class="card-link">
-              <i class="fa-brands fa-github"></i>
-              <span>GitHub</span>
-              <i class="fa-solid fa-arrow-up-right-from-square card-link-arrow"></i>
-            </a>
-            <a href="https://www.linkedin.com/in/dongxian-lim-78933a319/" target="_blank" class="card-link">
-              <i class="fa-brands fa-linkedin"></i>
-              <span>LinkedIn</span>
-              <i class="fa-solid fa-arrow-up-right-from-square card-link-arrow"></i>
-            </a>
-            <a href="/resume.pdf" target="_blank" class="card-link card-link--resume">
-              <i class="fa-solid fa-file-pdf"></i>
-              <span>Resume PDF</span>
-              <i class="fa-solid fa-download card-link-arrow"></i>
-            </a>
-            <a href="mailto:limdongx@gmail.com" class="card-link card-link--gmail">
-              <i class="fa-solid fa-envelope"></i>
-              <span>limdongx@gmail.com</span>
-              <i class="fa-solid fa-arrow-up-right-from-square card-link-arrow"></i>
-            </a>
-          </div>
-        </aside>
-
+      <div class="nav-social">
+        <a href="https://github.com/limdx006" target="_blank"><i class="fa-brands fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/dongxian-lim-78933a319/" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
       </div>
-    </section>
+
+      <button class="nav-hamburger" id="hamburgerBtn" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+    <div class="nav-mobile-menu" id="mobileMenu">
+      <a href="#about">About</a>
+      <a href="#education">Education</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+
+  <!-- Sections -->
+  <main>
+    <section id="about" class="content-section" data-src="/partials/about.html"></section>
+    <section id="education" class="content-section" data-src="/partials/education.html"></section>
+    <section id="experience" class="content-section" data-src="/partials/experience.html"></section>
+    <section id="projects" class="content-section" data-src="/partials/projects.html"></section>
+    <section id="skills" class="content-section" data-src="/partials/skills.html"></section>
+    <section id="contact" class="content-section" data-src="/partials/contact.html"></section>
   </main>
 
-  <!-- Footer injected here by include.js -->
-  <div id="footer-placeholder"></div>
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <p class="footer-copy">&copy; <span id="footerYear"></span> Lim Dong Xian — Built with ☕ &amp; curiosity.</p>
+      <div class="footer-social">
+        <a href="https://github.com/limdx006" target="_blank">GitHub</a>
+        <a href="https://www.linkedin.com/in/dongxian-lim-78933a319/" target="_blank">LinkedIn</a>
+      </div>
+    </div>
+  </footer>
 
-  <!-- Component loader — must be last so DOM is ready -->
-  <script src="/js/include.js"></script>
+  <!-- Loader script -->
+  <script src="/js/section-loader.js"></script>
+  <script>
+    // Footer year
+    document.getElementById('footerYear').textContent = new Date().getFullYear();
+
+    // Mobile hamburger toggle
+    const hamburger = document.getElementById('hamburgerBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    if (hamburger && mobileMenu) {
+      hamburger.addEventListener('click', () => mobileMenu.classList.toggle('open'));
+    }
+  </script>
 </body>
 </html>
