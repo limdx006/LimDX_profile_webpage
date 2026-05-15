@@ -10,7 +10,18 @@
   max-width: var(--max-w);
   text-align: left;
   width: 100%;
-  padding-left: 2rem;
+  padding: 0 2rem;
+
+  /* Two-column layout: text left, card right */
+  display: flex;
+  align-items: flex-start;
+  gap: 4rem;
+}
+
+/* ── Left column ── */
+.hero-left {
+  flex: 1;
+  min-width: 0;
 }
 
 /* "Small label */
@@ -131,4 +142,193 @@
   -webkit-text-fill-color: transparent;
   background-clip: text;
   font-weight: 700;
+}
+
+/* Bio description */
+.hero-desc {
+  margin-top: 1.5rem;
+  font-family: var(--font-body);
+  font-size: clamp(.9rem, 1.5vw, 1.05rem);
+  font-weight: 400;
+  color: var(--clr-muted);
+  line-height: 1.8;
+  max-width: 58ch;
+}
+
+/* ── Info Card (right column) ── */
+.hero-card {
+  flex-shrink: 0;
+  width: 320px;
+  margin-top: 1rem;
+
+  background: var(--clr-surface);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+
+  /* subtle inner glow */
+  box-shadow:
+    0 0 0 1px rgba(124,92,252,.08),
+    0 8px 32px rgba(0,0,0,.4),
+    inset 0 1px 0 rgba(255,255,255,.04);
+
+  /* entrance animation */
+  animation: card-in .6s ease both;
+  animation-delay: .35s;
+}
+
+@keyframes card-in {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Status badge */
+.card-status {
+  display: flex;
+  align-items: center;
+  gap: .55rem;
+  font-family: var(--font-display);
+  font-size: .78rem;
+  font-weight: 700;
+  color: #4ade80;         /* green */
+  letter-spacing: .02em;
+  text-transform: uppercase;
+  margin-bottom: 1.25rem;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #4ade80;
+  flex-shrink: 0;
+  box-shadow: 0 0 6px #4ade80;
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { box-shadow: 0 0 4px #4ade80; }
+  50%       { box-shadow: 0 0 10px #4ade80, 0 0 20px rgba(74,222,128,.3); }
+}
+
+/* Info list */
+.card-info {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: .65rem;
+  margin-bottom: 1.25rem;
+}
+
+.card-info li {
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  font-family: var(--font-body);
+  font-size: .875rem;
+  color: var(--clr-text);
+}
+
+.card-icon {
+  font-size: 1rem;
+  width: 1.4rem;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+/* Divider */
+.card-divider {
+  height: 1px;
+  background: var(--clr-border);
+  margin-bottom: 1.25rem;
+}
+
+/* Link rows */
+.card-links {
+  display: flex;
+  flex-direction: column;
+  gap: .45rem;
+}
+
+.card-link {
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  padding: .55rem .75rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--clr-border);
+  background: transparent;
+
+  font-family: var(--font-display);
+  font-size: .82rem;
+  font-weight: 600;
+  color: var(--clr-muted);
+
+  transition: color .2s, background .2s, border-color .2s, transform .15s;
+  cursor: pointer;
+}
+
+.card-link i:first-child {
+  font-size: 1rem;
+  width: 1.1rem;
+  text-align: center;
+}
+
+.card-link span {
+  flex: 1;
+}
+
+.card-link-arrow {
+  font-size: .65rem;
+  opacity: .4;
+  transition: opacity .2s, transform .2s;
+}
+
+.card-link:hover {
+  color: var(--clr-text);
+  background: rgba(124,92,252,.08);
+  border-color: rgba(124,92,252,.3);
+  transform: translateX(2px);
+}
+
+.card-link:hover .card-link-arrow {
+  opacity: 1;
+  transform: translateX(2px);
+}
+
+/* Resume link gets an accent treatment */
+.card-link--resume {
+  margin-top: .25rem;
+  border-color: rgba(124,92,252,.25);
+  color: var(--clr-accent1);
+}
+
+.card-link--resume:hover {
+  background: rgba(124,92,252,.15);
+  border-color: var(--clr-accent1);
+  color: var(--clr-accent2);
+}
+
+/* Gmail link */
+.card-link--gmail {
+  font-size: .75rem;
+}
+
+.card-link--gmail:hover {
+  background: rgba(234,67,53,.08);
+  border-color: rgba(234,67,53,.35);
+  color: #ea4335;
+}
+
+/* ── Responsive ── */
+@media (max-width: 860px) {
+  .hero-content {
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+
+  .hero-card {
+    width: 100%;
+    max-width: 340px;
+  }
 }
