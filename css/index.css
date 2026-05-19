@@ -1,4 +1,6 @@
-/* index.css - Page-specific styles for index.html (About page). */
+/* ==========================================================================
+   index.css - Page-specific styles.
+========================================================================== */
 
 .hero {
   display: flex;
@@ -339,7 +341,7 @@
 }
 
 
-/* Additional styles for Education, Projects, Skills, Contact */
+/* Additional styles for other sections */
 .content-section {
   scroll-margin-top: calc(var(--nav-h) + 1rem);
   /* so fixed navbar doesn't cover the title */
@@ -368,7 +370,9 @@
   padding-left: 1rem;
 }
 
-/* Timeline (for education & experience) */
+/* ==========================================================================
+Timeline (for education & experience) 
+========================================================================== */
 .timeline {
   display: flex;
   flex-direction: column;
@@ -470,7 +474,9 @@
   }
 }
 
-/* Projects grid */
+/* ==========================================================================
+Projects grid 
+========================================================================== */
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -533,7 +539,26 @@
   font-family: monospace;
 }
 
-/* Skills cloud */
+/* Subsection titles (Personal Projects / School Projects) */
+.subsection-title {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--clr-text);
+  margin: 2rem 0 1.5rem 0;
+  border-left: 3px solid var(--clr-accent2);
+  padding-left: 1rem;
+}
+
+/* Remove top margin for the first subsection title if it's directly after .section-title */
+.subsection-title:first-of-type {
+  margin-top: 0.5rem;
+}
+
+
+/* ==========================================================================
+Skills cloud
+========================================================================== */
 .skills-cloud {
   display: flex;
   flex-wrap: wrap;
@@ -555,7 +580,9 @@
   border-color: var(--clr-accent1);
 }
 
-/* Contact page */
+/* ==========================================================================
+Contact page
+========================================================================== */
 .contact-wrapper {
   display: flex;
   flex-wrap: wrap;
@@ -629,7 +656,9 @@
   }
 }
 
-/* ========== SCROLL REVEAL ANIMATION ========== */
+/* ==========================================================================
+SCROLL REVEAL ANIMATION
+========================================================================== */
 
 /* Start invisible and slightly below */
 .content-section {
