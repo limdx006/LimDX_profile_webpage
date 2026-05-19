@@ -515,3 +515,25 @@
     flex-direction: column;
   }
 }
+
+/* ========== SCROLL REVEAL ANIMATION ========== */
+
+/* Start invisible and slightly below */
+.content-section {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s cubic-bezier(0.2, 0.9, 0.4, 1.1),
+              transform 0.6s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+}
+
+/* When in view, become visible */
+.content-section.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Optional: delay for children (avoid glitch if needed) */
+.content-section.in-view .hero,
+.content-section.in-view .page-section {
+  animation: none; /* override any existing load-only animation */
+}
