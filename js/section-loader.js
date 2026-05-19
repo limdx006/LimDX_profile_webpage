@@ -52,8 +52,7 @@
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('in-view');
-          // Optional: keep observing? If you want to remove after first reveal:
-          // observer.unobserve(entry.target);
+          observer.unobserve(entry.target);
         }
       });
     }, {

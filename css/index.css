@@ -169,9 +169,9 @@
 
   /* subtle inner glow */
   box-shadow:
-    0 0 0 1px rgba(124,92,252,.08),
-    0 8px 32px rgba(0,0,0,.4),
-    inset 0 1px 0 rgba(255,255,255,.04);
+    0 0 0 1px rgba(124, 92, 252, .08),
+    0 8px 32px rgba(0, 0, 0, .4),
+    inset 0 1px 0 rgba(255, 255, 255, .04);
 
   /* entrance animation */
   animation: card-in .6s ease both;
@@ -179,8 +179,15 @@
 }
 
 @keyframes card-in {
-  from { opacity: 0; transform: translateY(16px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Status badge */
@@ -191,7 +198,8 @@
   font-family: var(--font-display);
   font-size: .78rem;
   font-weight: 700;
-  color: #4ade80;         /* green */
+  color: #4ade80;
+  /* green */
   letter-spacing: .02em;
   text-transform: uppercase;
   margin-bottom: 1.25rem;
@@ -208,8 +216,15 @@
 }
 
 @keyframes pulse-dot {
-  0%, 100% { box-shadow: 0 0 4px #4ade80; }
-  50%       { box-shadow: 0 0 10px #4ade80, 0 0 20px rgba(74,222,128,.3); }
+
+  0%,
+  100% {
+    box-shadow: 0 0 4px #4ade80;
+  }
+
+  50% {
+    box-shadow: 0 0 10px #4ade80, 0 0 20px rgba(74, 222, 128, .3);
+  }
 }
 
 /* Info list */
@@ -287,8 +302,8 @@
 
 .card-link:hover {
   color: var(--clr-text);
-  background: rgba(124,92,252,.08);
-  border-color: rgba(124,92,252,.3);
+  background: rgba(124, 92, 252, .08);
+  border-color: rgba(124, 92, 252, .3);
   transform: translateX(2px);
 }
 
@@ -305,7 +320,7 @@
 }
 
 .card-link--resume:hover {
-  background: rgba(124,92,252,.15);
+  background: rgba(124, 92, 252, .15);
   border-color: var(--clr-accent1);
   color: var(--clr-accent2);
 }
@@ -326,7 +341,8 @@
 
 /* Additional styles for Education, Projects, Skills, Contact */
 .content-section {
-  scroll-margin-top: calc(var(--nav-h) + 1rem);  /* so fixed navbar doesn't cover the title */
+  scroll-margin-top: calc(var(--nav-h) + 1rem);
+  /* so fixed navbar doesn't cover the title */
 }
 
 .page-section {
@@ -367,6 +383,9 @@
   border-radius: var(--radius-md);
   padding: 1.5rem;
   border: 1px solid var(--clr-border);
+  position: relative;
+  overflow: hidden;
+  /* keep image inside rounded corners */
 }
 
 .timeline-year {
@@ -394,6 +413,63 @@
   color: var(--clr-muted);
 }
 
+.timeline-item .timeline-content,
+.timeline-item .timeline-year {
+  position: relative;
+  z-index: 2;
+}
+
+/* Background image div – positioned on the right */
+.timeline-bg {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 60%;
+  background-size: cover;
+  background-position: center right;
+  background-repeat: no-repeat;
+  opacity: 0.3;
+  pointer-events: none;
+  z-index: 0;
+  border-radius: inherit;
+  /* Soft fade on the left side of the image */
+  mask-image: linear-gradient(to left, black 70%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to left, black 70%, transparent 100%);
+}
+
+/* Dark gradient overlay for text readability */
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: linear-gradient(90deg, rgba(18, 20, 37, 0.9) 0%, rgba(18, 20, 37, 0.6) 70%, transparent 100%);
+  z-index: 1;
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+/* Ensure text stays above both overlay and image */
+.timeline-item .timeline-content,
+.timeline-item .timeline-year {
+  position: relative;
+  z-index: 2;
+}
+
+
+@media (max-width: 700px) {
+  .timeline-bg {
+    width: 40%;
+    opacity: 0.2;
+  }
+  .timeline-item::before {
+    background: linear-gradient(90deg, rgba(18, 20, 37, 0.95) 0%, rgba(18, 20, 37, 0.7) 80%, transparent 100%);
+  }
+}
+
 /* Projects grid */
 .projects-grid {
   display: grid;
@@ -411,7 +487,7 @@
 
 .project-card:hover {
   transform: translateY(-4px);
-  border-color: rgba(124,92,252,0.4);
+  border-color: rgba(124, 92, 252, 0.4);
 }
 
 .project-tech {
@@ -429,8 +505,8 @@
 }
 
 .skill-tag {
-  background: rgba(124,92,252,0.12);
-  border: 1px solid rgba(124,92,252,0.25);
+  background: rgba(124, 92, 252, 0.12);
+  border: 1px solid rgba(124, 92, 252, 0.25);
   padding: 0.5rem 1rem;
   border-radius: 40px;
   font-size: 0.85rem;
@@ -439,7 +515,7 @@
 }
 
 .skill-tag:hover {
-  background: rgba(124,92,252,0.25);
+  background: rgba(124, 92, 252, 0.25);
   border-color: var(--clr-accent1);
 }
 
@@ -511,6 +587,7 @@
   .timeline-item {
     flex-direction: column;
   }
+
   .contact-wrapper {
     flex-direction: column;
   }
@@ -523,7 +600,7 @@
   opacity: 0;
   transform: translateY(24px);
   transition: opacity 0.6s cubic-bezier(0.2, 0.9, 0.4, 1.1),
-              transform 0.6s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    transform 0.6s cubic-bezier(0.2, 0.9, 0.4, 1.1);
 }
 
 /* When in view, become visible */
@@ -535,5 +612,6 @@
 /* Optional: delay for children (avoid glitch if needed) */
 .content-section.in-view .hero,
 .content-section.in-view .page-section {
-  animation: none; /* override any existing load-only animation */
+  animation: none;
+  /* override any existing load-only animation */
 }
