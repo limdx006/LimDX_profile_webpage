@@ -413,8 +413,8 @@ Timeline (for education & experience)
   font-family: var(--font-body);
   font-size: 0.85rem;
   font-weight: 500;
-  color: var(--clr-accent1);
-  background: rgba(53, 50, 95, 0.747);
+  color: var(--clr-accent2);
+  background: var(--clr-surface);
   padding: 0.2rem 0.7rem;
   border-radius: 20px;
   white-space: nowrap;
