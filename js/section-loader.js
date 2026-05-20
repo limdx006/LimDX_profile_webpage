@@ -22,6 +22,21 @@
     
     // Set up scroll reveal observer
     setupScrollReveal();
+    
+    // Set up course expand buttons
+    setupCourseExpand();
+  }
+
+  // Set up expand/collapse for course lists in education section
+  function setupCourseExpand() {
+    document.querySelectorAll('.expand-courses-btn').forEach(button => {
+      button.addEventListener('click', function() {
+        const container = this.closest('.courses-container');
+        if (container) {
+          container.classList.toggle('expanded');
+        }
+      });
+    });
   }
 
   // Smooth scroll when clicking any anchor link that points to an id

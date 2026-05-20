@@ -480,12 +480,84 @@ Timeline (for education & experience)
 }
 
 
-@media (max-width: 500px) {
-  .timeline-result {
-    top: 1.5rem;
-    right: 1.5rem;
-  }
+/* Courses expand/collapse */
+.courses-container {
+  position: relative;
+  margin-top: 1rem;
 }
+
+.courses-container h4 {
+  display: none;
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--clr-text);
+}
+
+.courses-container h4:first-of-type {
+  display: none;
+}
+
+.courses-container ul {
+  display: none;
+  list-style: disc;
+  padding-left: 1.2rem;
+  color: var(--clr-muted);
+  margin-bottom: 0.75rem;
+}
+
+.courses-container.expanded h4,
+.courses-container.expanded ul {
+  display: block;
+}
+
+.expand-courses-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.6rem 1rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(124, 92, 252, 0.3);
+  background: rgba(124, 92, 252, 0.08);
+  color: var(--clr-accent1);
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  position: relative;
+}
+
+.expand-courses-btn:hover {
+  background: rgba(124, 92, 252, 0.15);
+  border-color: var(--clr-accent1);
+  transform: translateY(-2px);
+}
+
+.expand-courses-btn i {
+  transition: transform 0.3s;
+  font-size: 0.75rem;
+}
+
+.courses-container.expanded .expand-courses-btn {
+  border-color: var(--clr-accent2);
+  color: var(--clr-accent2);
+}
+
+.courses-container.expanded .expand-courses-btn i {
+  transform: rotate(180deg);
+}
+
+.courses-container.expanded .expand-courses-btn span::before {
+  content: 'Hide ';
+}
+
+.courses-container.expanded .expand-courses-btn span {
+  font-size: 0;
+}
+
 
 /* ==========================================================================
 Projects grid 
