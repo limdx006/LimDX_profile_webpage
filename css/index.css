@@ -401,9 +401,25 @@ Timeline (for education & experience)
 }
 
 .timeline-content h3 {
-  font-size: 1.3rem;
-  margin-bottom: 0.25rem;
+  width: 100%;
+  margin: 0;
 }
+
+.timeline-result {
+  position: absolute;
+  top: 1.5rem;        
+  right: 1.5rem;     
+  z-index: 3;       
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--clr-accent1);
+  background: rgba(53, 50, 95, 0.747);
+  padding: 0.2rem 0.7rem;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+
 
 .timeline-content .institution {
   color: var(--clr-muted);
@@ -464,13 +480,10 @@ Timeline (for education & experience)
 }
 
 
-@media (max-width: 700px) {
-  .timeline-bg {
-    width: 40%;
-    opacity: 0.2;
-  }
-  .timeline-item::before {
-    background: linear-gradient(90deg, rgba(18, 20, 37, 0.95) 0%, rgba(18, 20, 37, 0.7) 80%, transparent 100%);
+@media (max-width: 500px) {
+  .timeline-result {
+    top: 1.5rem;
+    right: 1.5rem;
   }
 }
 
