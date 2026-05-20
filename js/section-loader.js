@@ -20,26 +20,48 @@
     const promises = Array.from(sections).map(section => loadSection(section));
     await Promise.all(promises);
     
-    // After loading, enable smooth scroll for nav links
-    enableSmoothScroll();
-    
     // Set up scroll reveal observer
     setupScrollReveal();
   }
 
   // Smooth scroll when clicking any anchor link that points to an id
   function enableSmoothScroll() {
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
-        const targetId = this.getAttribute('href');
-        if (targetId === '#') return;
-        const targetElement = document.querySelector(targetId);
-        if (targetElement) {
-          e.preventDefault();
-          targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          history.pushState(null, null, targetId);
+    function smoothScrollToElement(targetElement) {
+      const headerOffset = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-h')) || 0;
+      const startY = window.pageYOffset || document.documentElement.scrollTop;
+      const targetY = targetElement.getBoundingClientRect().top + startY - headerOffset - 10;
+      const duration = 1000;
+      const startTime = performance.now();
+
+      function ease(t) {
+        return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+      }
+
+      function animate(currentTime) {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const eased = ease(progress);
+        window.scrollTo(0, Math.round(startY + (targetY - startY) * eased));
+        if (elapsed < duration) {
+          requestAnimationFrame(animate);
         }
-      });
+      }
+
+      requestAnimationFrame(animate);
+    }
+
+    document.addEventListener('click', function(e) {
+      const anchor = e.target.closest('a[href^="#"]');
+      if (!anchor) return;
+
+      const targetId = anchor.getAttribute('href');
+      if (!targetId || targetId === '#') return;
+      const targetElement = document.querySelector(targetId);
+      if (targetElement) {
+        e.preventDefault();
+        smoothScrollToElement(targetElement);
+        history.pushState(null, null, targetId);
+      }
     });
   }
 
@@ -62,6 +84,9 @@
 
     sections.forEach(section => observer.observe(section));
   }
+
+  // Enable smooth scrolling immediately, even while partial sections are still loading
+  enableSmoothScroll();
 
   // Start loading when DOM is ready
   if (document.readyState === 'loading') {
