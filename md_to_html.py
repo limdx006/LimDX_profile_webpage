@@ -186,7 +186,7 @@ def md_to_html(md_content, title="README Preview", back_link="/"):
 
 if __name__ == '__main__':
     if len(sys.argv) < 3:
-        print("Usage: python md_to_readme.py <input.md> <output.html> [\"Page Title\"]")
+        print("Usage: python md_to_html.py <input.md> <output.html> [\"Page Title\"]")
         sys.exit(1)
 
     input_file = sys.argv[1]
