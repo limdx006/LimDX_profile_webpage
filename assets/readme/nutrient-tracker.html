@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nutrient — README Preview</title>
+    <link rel="stylesheet" href="/css/tokens.css">
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/readme.css">
+    <base href="/">
+</head>
+
+<body>
+    <a href="/" class="back-link">← Back to Portfolio</a>
+
+    <h1>CP3407-Group-Project</h1>
+    <h1>Project Proposal: Nutrient</h1>
+    <h3>GITHUB link: <a href="https://github.com/LimDongXian/CP3407-Group-Project">Repository</a></h3>
+    <h3>Student: Lim Dong Xian </h3>
+    <h3>Student: Hamzah Nutt </h3>
+    <h3>Student: Richo Winson Tandoto </h3>
+    <h3>Student: Mayur Ramesh </h3>
+
+    <hr>
+
+    <h2>1. Project Overview</h2>
+    <p>This is a web-based nutrition tracking application that enables users to:</p>
+    <ul>
+        <li>Search and analyse nutritional values of food items using barcode scanning or text search</li>
+        <li>Log daily meals and track macronutrient intake (calories, protein, carbs, fats)</li>
+        <li>Auto personalised health goals based on calculated TDEE (Total Daily Energy Expenditure)</li>
+        <li>Monitor progress with visual dashboards and historical data</li>
+    </ul>
+
+    <p><strong>Target Users:</strong> Health-conscious individuals, fitness enthusiasts, and anyone monitoring dietary
+        intake.</p>
+    <img src="images/nutrient_web_preview.png"/>
+
+    <hr>
+
+    <h2>2. Objectives</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Objective</th>
+                <th>Success Metric</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Provide accurate nutritional data from reliable sources</td>
+                <td>Integration with 2+ verified nutrition APIs</td>
+            </tr>
+            <tr>
+                <td>Enable quick food logging</td>
+                <td>&lt; 30 seconds to log a meal</td>
+            </tr>
+            <tr>
+                <td>Calculate personalized daily targets</td>
+                <td>Mifflin-St Jeor BMR equation implementation</td>
+            </tr>
+            <tr>
+                <td>Ensure data persistence</td>
+                <td>Daily snapshots stored for historical tracking</td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <hr>
+
+    <h2>3. Key Features</h2>
+
+    <h3>🔍 Food Search &amp; Discovery</h3>
+    <ul>
+        <li><strong>Text Search:</strong> Search 2M+ products via Open Food Facts API</li>
+        <li><strong>Nutrient Normalization:</strong> Automatic conversion (kJ→kcal, g→mg for sodium)</li>
+    </ul>
+
+    <h3>📊 Daily Tracking</h3>
+    <ul>
+        <li>Real-time macronutrient counters with progress bars</li>
+        <li>Meal categorisation (Breakfast, Lunch, Dinner, Snacks)</li>
+        <li>Daily summary with BMR-based goal calculations</li>
+    </ul>
+
+    <h3>🍽️ Custom Food Creation</h3>
+    <ul>
+        <li>Create and save custom recipes</li>
+        <li>Ingredient-based nutrition calculation via CalorieNinjas API</li>
+        <li>Image upload for food items (base64 storage)</li>
+    </ul>
+
+    <h3>📈 Progress Monitoring</h3>
+    <ul>
+        <li>7 or 31-day intake history with Chart.js visualisations</li>
+        <li>Automatic daily reset</li>
+    </ul>
+
+    <h3>💡 Dietary Insights</h3>
+    <ul>
+        <li>High nutrient highlights</li>
+        <li>Suggested daily limits based on user profile (age, weight, gender, height)</li>
+    </ul>
+
+    <hr>
+
+    <h2>4. Technology Stack</h2>
+    <ul>
+        <li>Framework: Django 5.x.x</li>
+        <li>Frontend: HTML, CSS</li>
+        <li>Backend: Python, JavaScript</li>
+        <li>Database: SQL</li>
+        <li>Version Control: GitHub commit</li>
+    </ul>
+
+    <h3>API Integration Details</h3>
+    <ul>
+        <li><strong>Open Food Facts:</strong> Product search by name/barcode, nutritional data per 100g</li>
+        <li><strong>CalorieNinjas:</strong> Natural language food parsing ("2 eggs and toast"), ingredient-level
+            analysis</li>
+    </ul>
+
+    <hr>
+
+    <h2>5. Data and Privacy</h2>
+    <p>The application will utilise publicly available nutrient datasets or APIs. No personal or sensitive user data
+        will be stored without consent. All data handling will comply with data privacy and security, ensuring that user
+        information remains confidential and secure.</p>
+
+</body>
+
+</html>
