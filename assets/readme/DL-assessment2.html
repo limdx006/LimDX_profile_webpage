@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Deep Learning - Assessment 2 (assets)</title>
+  <link rel="stylesheet" href="/css/tokens.css">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/readme.css">
+  <base href="/">
+</head>
+
+<body>
+    <a href="/" class="back-link">← Back to Portfolio</a>
+
+    <h1>CP3501 Deep Learning - Assessment 2</h1>
+    <p>
+      <b>Animal Image Classification</b> 
+      — A comprehensive study of 10 deep learning architectures with hyperparameter tuning, 
+      data augmentation, and ensemble methods.
+    </p>
+
+    <hr>
+
+    <h1>Project Overview</h1>
+    <p>
+        This project tackles a 7‑class animal image classification task using a variety of state‑of‑the‑art deep learning models.
+        We systematically explored data preprocessing, augmentation (MixUp, TTA, RandomErasing), and hyperparameter tuning
+        (learning rates, epochs, label smoothing) to maximise generalisation and minimise log loss.
+        The work was structured across five tasks, from baseline training to final ensemble prediction.
+    </p>
+
+    <hr>
+
+    <h1>Models Tested</h1>
+    <p>We evaluated 10 different architectures (Task 3) and selected the top 5 for deeper experimentation:</p>
+    <ul>
+        <li><strong>beit_base_patch16_224</strong> — Vision Transformer (ViT) with patch‑based self‑attention.</li>
+        <li><strong>ResNet101</strong> — 101‑layer CNN with residual connections.</li>
+        <li><strong>DenseNet121</strong> — Densely connected CNN for efficient feature reuse.</li>
+        <li><strong>ResNet34</strong> — Medium‑sized residual network (baseline).</li>
+        <li><strong>ResNet50</strong> — Popular 50‑layer CNN with good trade‑off.</li>
+        <li><em>(Others: DINO, MobileNetV3, EfficientNetB0, ConvNeXt Tiny, EfficientNetB3)</em></li>
+    </ul>
+
+    <hr>
+
+    <h1>Hyperparameters & Techniques</h1>
+    <ul>
+        <li><strong>Epochs</strong> — 5–10, with EarlyStopping for some runs.</li>
+        <li><strong>Augmentations</strong> — Random flips, rotation (up to 15°), zoom (1.2–1.5), lighting, RandomErasing, MixUp (disabled/enabled).</li>
+        <li><strong>Label Smoothing</strong> — Softened labels to reduce overconfidence.</li>
+        <li><strong>Test Time Augmentation (TTA)</strong> — Averaged predictions over multiple augmented views.</li>
+        <li><strong>Learning Rates</strong> — Explored 1e‑3, 5e‑4, 3e‑5, and automatic fine‑tune defaults.</li>
+    </ul>
+
+    <hr>
+
+    <h1>Best Results (Log Loss)</h1>
+    <ul>
+        <li><strong>beit_base_patch16_224</strong> — 1.2476 (final setup: 10 epochs, lr=5e‑4, TTA, moderate aug)</li>
+        <li><strong>ResNet101</strong> — 1.3891 (6 epochs, TTA, label smoothing, no MixUp)</li>
+        <li><strong>DenseNet121</strong> — 1.4956 (6 epochs, lr=1e‑3, no augmentation overkill)</li>
+        <li><strong>ResNet34</strong> — 1.5443 (5 epochs, max_zoom=1.3, label smoothing, TTA)</li>
+        <li><strong>ResNet50</strong> — 1.6262 (augmentation + label smoothing combined)</li>
+    </ul>
+    <p>
+        <strong>Ensemble (mean of top 3)</strong> — 1.2650, slightly improving over the single best model,
+        demonstrating the benefit of combining diverse representations.
+    </p>
+
+    <hr>
+
+    <h1>Conclusion</h1>
+    <p>
+        Our experiments confirmed that careful tuning of augmentations, learning rates, and regularisation (label smoothing)
+        is critical for achieving strong generalisation. While MixUp sometimes hurt performance, TTA consistently improved results.
+        The Vision Transformer (beit) outperformed all CNNs, and ensembling provided a modest boost.
+        Future work could explore more advanced ensembling (stacking) and larger pretrained models.
+    </p>
+
+    <h1>Kaggle link</h1>
+    <p>Some of the links maybe private or not accessible to the public.</p>
+    <ul>
+        <li><b>Competition dataset:</b> <a href="https://www.kaggle.com/datasets/limdx006/competition-files" target="_blank">https://www.kaggle.com/datasets/limdx006/competition-files</a></li>
+        <li><b>Task 1 (baseline):</b> <a href="https://www.kaggle.com/code/limdx006/cp3501-2025-task-1-group-20" target="_blank">https://www.kaggle.com/code/limdx006/cp3501-2025-task-1-group-20</a></li>
+        <li><b>Task 2 (fine‑tuning):</b> <a href="https://www.kaggle.com/code/limdx006/cp3501-2025-task-2-group-20" target="_blank">https://www.kaggle.com/code/limdx006/cp3501-2025-task-2-group-20</a></li>
+        <li><b>Task 4 (hyperparameter tuning) – individual model notebooks:</b>
+            <ul>
+                <li><a href="https://www.kaggle.com/code/limdx006/cp3501-2025-task-4-group-20-lim-resnet101" target="_blank">https://www.kaggle.com/code/limdx006/cp3501-2025-task-4-group-20-lim-resnet101</a></li>
+                <li><a href="https://www.kaggle.com/code/choopwintchal/cp3501-2025-task-4-group-20-2nd-model-noaug" target="_blank">https://www.kaggle.com/code/choopwintchal/cp3501-2025-task-4-group-20-2nd-model-noaug</a></li>
+                <li><a href="https://www.kaggle.com/code/sinnatnerpaing/cp3501-2025-task-4-aug-tta-group-20" target="_blank">https://www.kaggle.com/code/sinnatnerpaing/cp3501-2025-task-4-aug-tta-group-20</a></li>
+                <li><a href="https://www.kaggle.com/code/richo7777/cp3501-2025-task-4-group-20" target="_blank">https://www.kaggle.com/code/richo7777/cp3501-2025-task-4-group-20</a></li>
+                <li><a href="https://www.kaggle.com/code/alexiawin/fork-of-fork-of-cp3501-2025-task-2-resnet50-tta" target="_blank">https://www.kaggle.com/code/alexiawin/fork-of-fork-of-cp3501-2025-task-2-resnet50-tta</a></li>
+            </ul>
+        </li>
+        <li><b>Task 5 (model ensemble):</b> <a href="https://www.kaggle.com/code/limdx006/cp3501-2025-task-5-group-20-5-models" target="_blank">https://www.kaggle.com/code/limdx006/cp3501-2025-task-5-group-20-5-models</a></li>
+    </ul>
+
+    <hr>
+
+    <h1>Authors</h1>
+    <ul>
+        <li>Lim Dong Xian (limdx006)</li>
+        <li>Richo Winson Tandoto (Richo7777)</li>
+        <li>Choo Pwint Chal (choopwintchal)</li>
+        <li>Sin (sinnathepaiing)</li>
+        <li>Aye Chan Moe (alexiawin)</li>
+    </ul>
+
+    <hr>
+
+  <h1>Full Report Preview</h1>
+  <a href="/assets/pdf/LimDongXian_DeepLearning20.pdf" target="_blank" class="card-link card-link--resume">
+    <i class="fa-solid fa-file-pdf"></i><span>Preview the Full Report here →</span>
+  </a>
+
+</body>
+</html>

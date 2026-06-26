@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Mining - Assignment 1 (assets)</title>
+    <link rel="stylesheet" href="/css/tokens.css">
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/readme.css">
+    <base href="/">
+</head>
+
+<body>
+    <a href="/" class="back-link">← Back to Portfolio</a>
+
+    <h1>CP3403 - Data Mining Assignment 1</h1>
+    <p><b>Gender Recognition by Voice Analysis</b> — A comparative study of Decision Tree and Naive Bayes classifiers on 44 acoustic features.</p>
+
+
+    <hr>
+
+    <h1>Project Overview</h1>
+    <p>
+        Voice recognition is increasingly used in authentication, smart devices, and personalised user experiences.
+        This project analyses 44 vocal features — including spectral centroids, MFCCs, pitch, and energy measures —
+        to classify a speaker’s gender (male / female). The dataset (16,148 rows) was preprocessed via normalisation
+        and duplicate removal (1,078 duplicates eliminated).
+    </p>
+    <p>
+        We built and compared two classifiers: a <b>Decision Tree</b> (with entropy splitting) and a
+        <b>Naive Bayes (GaussianNB)</b> model. Additionally, we applied <b>Association Rule Mining (ARM)</b>
+        using the Apriori algorithm to discover interpretable patterns between binned audio features and gender.
+    </p>
+
+    <hr>
+
+    <h1>Key Results</h1>
+    <ul>
+        <li><strong>Naive Bayes (GaussianNB)</strong> — <strong>93% accuracy</strong>, with balanced recall:
+            <ul>
+                <li>Female recall: 0.95</li>
+                <li>Male precision: 0.97</li>
+            </ul>
+        </li>
+        <li><strong>Decision Tree</strong> — <strong>90% accuracy</strong>, but lower recall for females (0.77) due to class imbalance.</li>
+    </ul>
+    <p>
+        The Naive Bayes model proved more resilient to the dataset’s imbalance (~50% more male samples) and is recommended for real‑world deployment due to its simplicity, speed, and strong performance.
+    </p>
+
+     <hr>
+
+    <h1>Association Rule Mining (ARM)</h1>
+    <p>
+        Using the Apriori algorithm on binned features (Low/Medium/High), we discovered meaningful rules — for example,
+        <i>“when mean_spectral_contrast is Low, there is a high likelihood the voice belongs to a Male.”</i>
+        These rules provide interpretable insights that complement the black‑box models.
+    </p>
+
+    <hr>
+
+    <h1>Kaggle link</h1>
+    <ul>
+        <li><strong>Kaggle Notebook:</strong> <a href="https://www.kaggle.com/code/limdx006/assessment-1-v2" target="_blank">https://www.kaggle.com/code/limdx006/assessment-1-v2</a></li>
+        <li><strong>Dataset:</strong> <a href="https://www.kaggle.com/datasets/murtadhanajim/vocal-gender-features" target="_blank">https://www.kaggle.com/datasets/murtadhanajim/vocal-gender-features</a></li>
+    </ul>
+
+    <hr>
+
+    <h1>Authors</h1>
+    <ul>
+        <li>Lim Dong Xian (14586049) — Data Description, Preprocessing, ARM, Naïve Bayes, Discussion, Future Improvements</li>
+        <li>Richo Winson Tandoto (14558830) — Abstract, Introduction, Business Scenario, Features, Decision Tree, Discussion, Conclusion</li>
+    </ul>
+
+    <hr>
+
+    <h1>Full Report Preview</h1>
+    <a href="/assets/pdf/LimDongXian_DataMining_Assessment_Group31.pdf" target="_blank" class="card-link card-link--resume">
+        <i class="fa-solid fa-file-pdf"></i><span>Preview the Full Report here →</span>
+    </a>
+</body>
+</html>
