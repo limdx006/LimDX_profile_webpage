@@ -350,8 +350,8 @@ Timeline (for education & experience)
 }
 
 .timeline-item {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: minmax(120px, max-content) 1fr;
   gap: 1rem;
   background: var(--clr-surface);
   border-radius: var(--radius-md);
@@ -366,7 +366,12 @@ Timeline (for education & experience)
   font-weight: 700;
   color: var(--clr-accent2);
   min-width: 120px;
+  white-space: nowrap;
   font-size: 1rem;
+}
+
+.timeline-content {
+  min-width: 0;
 }
 
 .timeline-content h3 {
@@ -588,7 +593,7 @@ Skills cloud
 ========================================================================== */
 .skills-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  grid-template-columns: repeat(2, minmax(320px, 1fr));
   gap: 1.8rem;
   align-items: stretch;
 }
@@ -648,6 +653,12 @@ Skills cloud
   border-color: var(--clr-accent1);
   color: var(--clr-text);
   transform: translateY(-1px);
+}
+
+@media (max-width: 700px) {
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* ==========================================================================
