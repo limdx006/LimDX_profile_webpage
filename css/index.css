@@ -350,9 +350,10 @@ Timeline (for education & experience)
 }
 
 .timeline-item {
-  display: grid;
-  grid-template-columns: minmax(120px, max-content) 1fr;
+  display: flex;
+  flex-wrap: wrap;
   gap: 1rem;
+  align-items: flex-start;
   background: var(--clr-surface);
   border-radius: var(--radius-md);
   padding: 1.5rem;
@@ -366,11 +367,13 @@ Timeline (for education & experience)
   font-weight: 700;
   color: var(--clr-accent2);
   min-width: 120px;
+  flex: 0 0 120px;
   white-space: nowrap;
   font-size: 1rem;
 }
 
 .timeline-content {
+  flex: 1 1 min(100%, 520px);
   min-width: 0;
 }
 
@@ -809,6 +812,22 @@ SCROLL REVEAL ANIMATION
 /* ==========================================================================
    Responsive adjustments
    ========================================================================== */
+@media (max-width: 860px) {
+  .timeline-item {
+    flex-direction: column;
+  }
+
+  .timeline-year {
+    width: 100%;
+    flex: 0 0 auto;
+    min-width: 0;
+  }
+
+  .timeline-content {
+    width: 100%;
+  }
+}
+
 @media (max-width: 700px) {
   .timeline-item {
     flex-direction: column;
