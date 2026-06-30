@@ -85,6 +85,11 @@
     const sections = document.querySelectorAll('.content-section');
     if (!sections.length) return;
 
+    if (!('IntersectionObserver' in window)) {
+      sections.forEach(section => section.classList.add('in-view'));
+      return;
+    }
+
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -93,8 +98,8 @@
         }
       });
     }, {
-      threshold: 0.2,        // trigger when 20% of the section is visible
-      rootMargin: '0px 0px -80px 0px' // a little offset to avoid navbar overlap
+      threshold: 0.0,        // trigger as soon as any part of the section enters view
+      rootMargin: '0px 0px -120px 0px' // avoid navbar overlap and trigger earlier
     });
 
     sections.forEach(section => observer.observe(section));
