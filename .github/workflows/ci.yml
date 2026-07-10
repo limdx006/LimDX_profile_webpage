@@ -32,7 +32,7 @@ jobs:
         uses: Cyb3r-Jak3/html5validator-action@v7.2.0
         with:
           root: .
-          extra: "--blacklist partials assets/kaggle/**"
+          extra: "--blacklist partials kaggle"
 
   # 2. Check for broken internal/external links
   link-check:
