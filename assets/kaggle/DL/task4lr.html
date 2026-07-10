@@ -1,0 +1,1702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jupyter Notebook — generated with runcell</title>
+    <meta name="description" content="Exported with runcell — convert .ipynb notebooks to HTML or PDF anytime at runcell.dev." />
+    <meta name="generator" content="runcell" />
+    <style>
+        :root {
+            --jp-code-font-family: 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace;
+            --jp-content-font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            --jp-cell-prompt-width: 64px;
+            --jp-input-prompt-color: #307fc1;
+            --jp-output-prompt-color: #bf5b3d;
+            --jp-cell-input-bg: #f7f7f7;
+            --jp-layout-color0: #ffffff;
+            --jp-layout-color1: #f7f7f7;
+            --jp-border-color1: #e0e0e0;
+            --jp-content-font-color0: #000000;
+            --jp-content-font-color1: #333333;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--jp-content-font-family);
+            font-size: 14px;
+            line-height: 1.5;
+            color: var(--jp-content-font-color0);
+            background-color: var(--jp-layout-color0);
+            margin: 0;
+            padding: 0;
+        }
+
+        .notebook-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Cell structure */
+        .cell {
+            display: flex;
+            flex-direction: row;
+            margin-bottom: 12px;
+            position: relative;
+        }
+
+        .cell-prompt {
+            min-width: var(--jp-cell-prompt-width);
+            width: var(--jp-cell-prompt-width);
+            font-family: var(--jp-code-font-family);
+            font-size: 12px;
+            padding: 10px 8px 10px 0;
+            text-align: right;
+            flex-shrink: 0;
+            user-select: none;
+        }
+
+        .cell-content {
+            flex: 1;
+            min-width: 0;
+            overflow: hidden;
+        }
+
+        /* Input prompt styling - Jupyter blue */
+        .input-prompt {
+            color: var(--jp-input-prompt-color);
+            font-weight: bold;
+        }
+
+        /* Output prompt styling - Jupyter red/orange */
+        .output-prompt {
+            color: var(--jp-output-prompt-color);
+            font-weight: bold;
+        }
+
+        /* Code cell input area */
+        .input-area {
+            background-color: var(--jp-cell-input-bg);
+            border: 1px solid var(--jp-border-color1);
+            border-radius: 2px;
+            padding: 8px 12px;
+            overflow-x: auto;
+        }
+
+        .input-area pre {
+            margin: 0;
+            font-family: var(--jp-code-font-family);
+            font-size: 13px;
+            line-height: 1.4;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        /* Output area */
+        .output-area {
+            margin-top: 0;
+        }
+
+        .output-wrapper {
+            display: flex;
+            flex-direction: row;
+            margin-top: 4px;
+        }
+
+        .output-content {
+            flex: 1;
+            min-width: 0;
+            padding: 8px 0;
+        }
+
+        .output-content pre {
+            margin: 0;
+            font-family: var(--jp-code-font-family);
+            font-size: 13px;
+            line-height: 1.4;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        /* Stream output (stdout/stderr) */
+        .output-stream {
+            font-family: var(--jp-code-font-family);
+            font-size: 13px;
+            line-height: 1.4;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .output-stderr {
+            background-color: #fdd;
+            padding: 8px 12px;
+            border-radius: 2px;
+        }
+
+        /* Execute result / display data */
+        .output-result {
+            padding: 4px 0;
+        }
+
+        .output-result pre {
+            margin: 0;
+            font-family: var(--jp-code-font-family);
+            font-size: 13px;
+        }
+
+        /* Image output */
+        .output-image {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* HTML output (DataFrames, etc.) */
+        .output-html {
+            overflow-x: auto;
+        }
+
+        .output-html table {
+            border-collapse: collapse;
+            font-size: 13px;
+            font-family: var(--jp-content-font-family);
+        }
+
+        .output-html table th,
+        .output-html table td {
+            border: 1px solid #ddd;
+            padding: 6px 10px;
+            text-align: left;
+        }
+
+        .output-html table th {
+            background-color: #f5f5f5;
+            font-weight: 600;
+        }
+
+        .output-html table tr:nth-child(even) {
+            background-color: #fafafa;
+        }
+
+        /* Error output */
+        .output-error {
+            background-color: #fff0f0;
+            padding: 8px 12px;
+            border-radius: 2px;
+            font-family: var(--jp-code-font-family);
+            font-size: 13px;
+            white-space: pre-wrap;
+        }
+
+        /* Markdown cell styling */
+        .markdown-cell {
+            padding: 10px 0;
+        }
+
+        .markdown-cell h1 {
+            font-size: 2em;
+            font-weight: 600;
+            margin: 0.67em 0;
+            padding-bottom: 0.3em;
+            border-bottom: 1px solid var(--jp-border-color1);
+        }
+
+        .markdown-cell h2 {
+            font-size: 1.5em;
+            font-weight: 600;
+            margin: 0.83em 0;
+            padding-bottom: 0.3em;
+            border-bottom: 1px solid var(--jp-border-color1);
+        }
+
+        .markdown-cell h3 {
+            font-size: 1.25em;
+            font-weight: 600;
+            margin: 1em 0;
+        }
+
+        .markdown-cell h4 {
+            font-size: 1em;
+            font-weight: 600;
+            margin: 1.33em 0;
+        }
+
+        .markdown-cell h5 {
+            font-size: 0.875em;
+            font-weight: 600;
+            margin: 1.67em 0;
+        }
+
+        .markdown-cell h6 {
+            font-size: 0.85em;
+            font-weight: 600;
+            margin: 2.33em 0;
+            color: #6a737d;
+        }
+
+        .markdown-cell p {
+            margin: 0 0 16px 0;
+            line-height: 1.6;
+        }
+
+        .markdown-cell code {
+            font-family: var(--jp-code-font-family);
+            font-size: 85%;
+            background-color: rgba(27, 31, 35, 0.05);
+            padding: 0.2em 0.4em;
+            border-radius: 3px;
+        }
+
+        .markdown-cell pre {
+            background-color: var(--jp-cell-input-bg);
+            border: 1px solid var(--jp-border-color1);
+            border-radius: 3px;
+            padding: 16px;
+            overflow-x: auto;
+            font-size: 85%;
+            line-height: 1.45;
+        }
+
+        .markdown-cell pre code {
+            background-color: transparent;
+            padding: 0;
+            border-radius: 0;
+            font-size: 100%;
+        }
+
+        .markdown-cell blockquote {
+            margin: 0 0 16px 0;
+            padding: 0 1em;
+            color: #6a737d;
+            border-left: 4px solid #dfe2e5;
+        }
+
+        .markdown-cell ul,
+        .markdown-cell ol {
+            margin: 0 0 16px 0;
+            padding-left: 2em;
+        }
+
+        .markdown-cell li {
+            margin: 0.25em 0;
+        }
+
+        .markdown-cell a {
+            color: #0366d6;
+            text-decoration: none;
+        }
+
+        .markdown-cell a:hover {
+            text-decoration: underline;
+        }
+
+        .markdown-cell hr {
+            border: 0;
+            border-top: 1px solid var(--jp-border-color1);
+            margin: 24px 0;
+        }
+
+        .markdown-cell img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .markdown-cell table {
+            border-collapse: collapse;
+            margin: 0 0 16px 0;
+        }
+
+        .markdown-cell table th,
+        .markdown-cell table td {
+            border: 1px solid #dfe2e5;
+            padding: 6px 13px;
+        }
+
+        .markdown-cell table th {
+            font-weight: 600;
+            background-color: #f6f8fa;
+        }
+
+        .markdown-cell table tr:nth-child(2n) {
+            background-color: #f6f8fa;
+        }
+
+        /* Raw cell styling */
+        .raw-cell {
+            background-color: var(--jp-layout-color1);
+            border: 1px solid var(--jp-border-color1);
+            border-radius: 2px;
+            padding: 8px 12px;
+            font-family: var(--jp-code-font-family);
+            font-size: 13px;
+            white-space: pre-wrap;
+        }
+
+        /* Empty prompt placeholder */
+        .prompt-empty {
+            color: transparent;
+        }
+
+        .export-footer {
+            margin-top: 32px;
+            padding-top: 16px;
+            border-top: 1px solid var(--jp-border-color1);
+            color: #555;
+            font-size: 13px;
+            text-align: center;
+        }
+
+        .export-footer a {
+            color: #0366d6;
+            text-decoration: none;
+        }
+
+        .export-footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="notebook-container">
+        <div class="cell cell-markdown">
+            <div class="cell-prompt prompt-empty">&nbsp;</div>
+            <div class="cell-content">
+                <div class="markdown-cell"><h1>Notebook 2 Baseline Prediction</h1></div>
+            </div>
+        </div>
+        <div class="cell cell-markdown">
+            <div class="cell-prompt prompt-empty">&nbsp;</div>
+            <div class="cell-content">
+                <div class="markdown-cell"><h2>Import Library</h2></div>
+            </div>
+        </div>
+        <div class="cell cell-code">
+            <div class="cell-prompt input-prompt">In [1]:</div>
+            <div class="cell-content">
+                <div class="input-area"><pre>import pandas as pd
+import numpy as np
+import os
+import random
+
+# for visualisation
+import matplotlib.pyplot as plt
+import seaborn as sns
+from PIL import Image
+
+# for fastai
+from fastai.vision.all import *
+
+# for log_loss
+from sklearn.metrics import log_loss
+import torch.nn.functional as F
+
+# K-Fold Split
+from sklearn.model_selection import StratifiedGroupKFold
+
+# Models
+from torchvision.models import resnet101
+from torchvision.models import densenet121</pre></div>
+            </div>
+        </div>
+        <div class="cell cell-code">
+            <div class="cell-prompt input-prompt">In [2]:</div>
+            <div class="cell-content">
+                <div class="input-area"><pre># Allow full column width display in Pandas
+pd.set_option('display.max_colwidth', None)</pre></div>
+            </div>
+        </div>
+        <div class="cell cell-markdown">
+            <div class="cell-prompt prompt-empty">&nbsp;</div>
+            <div class="cell-content">
+                <div class="markdown-cell"><h2>Load train data</h2></div>
+            </div>
+        </div>
+        <div class="cell cell-code">
+            <div class="cell-prompt input-prompt">In [3]:</div>
+            <div class="cell-content">
+                <div class="input-area"><pre>trn_label = pd.read_csv('/kaggle/input/competition-files/train_labels.csv')
+trn_fea = pd.read_csv('/kaggle/input/competition-files/train_features.csv')</pre></div>
+            </div>
+        </div>
+        <div class="cell cell-markdown">
+            <div class="cell-prompt prompt-empty">&nbsp;</div>
+            <div class="cell-content">
+                <div class="markdown-cell"><h2>Load test data</h2></div>
+            </div>
+        </div>
+        <div class="cell cell-code">
+            <div class="cell-prompt input-prompt">In [4]:</div>
+            <div class="cell-content">
+                <div class="input-area"><pre># Read the CSV
+test_df = pd.read_csv('/kaggle/input/competition-files/test_features.csv')
+test_df.head()</pre></div>
+                <div class="output-area">
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt">Out[4]:</div>
+                        <div class="output-content">
+                            <div class="output-html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>id</th>
+      <th>filepath</th>
+      <th>site</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>ZJ016488</td>
+      <td>test_features/ZJ016488.jpg</td>
+      <td>S0082</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>ZJ016489</td>
+      <td>test_features/ZJ016489.jpg</td>
+      <td>S0040</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>ZJ016490</td>
+      <td>test_features/ZJ016490.jpg</td>
+      <td>S0040</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>ZJ016491</td>
+      <td>test_features/ZJ016491.jpg</td>
+      <td>S0041</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>ZJ016492</td>
+      <td>test_features/ZJ016492.jpg</td>
+      <td>S0040</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="cell cell-code">
+            <div class="cell-prompt input-prompt">In [5]:</div>
+            <div class="cell-content">
+                <div class="input-area"><pre># Get list of image paths
+test_dir = Path('/kaggle/input/competition-files/') 
+test_files = [test_dir/f for f in test_df['filepath']]
+print("Loaded image count:", len(test_files))     # should be 4464</pre></div>
+                <div class="output-area">
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-stream">Loaded image count: 4464
+</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="cell cell-markdown">
+            <div class="cell-prompt prompt-empty">&nbsp;</div>
+            <div class="cell-content">
+                <div class="markdown-cell"><h1>1. Check for validation set</h1></div>
+            </div>
+        </div>
+        <div class="cell cell-code">
+            <div class="cell-prompt input-prompt">In [6]:</div>
+            <div class="cell-content">
+                <div class="input-area"><pre># Merge train features and labels on 'id'
+df = pd.merge(trn_fea, trn_label, on='id')
+
+# Preview merged dataframe
+df.head(5)</pre></div>
+                <div class="output-area">
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt">Out[6]:</div>
+                        <div class="output-content">
+                            <div class="output-html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>id</th>
+      <th>filepath</th>
+      <th>site</th>
+      <th>antelope_duiker</th>
+      <th>bird</th>
+      <th>blank</th>
+      <th>civet_genet</th>
+      <th>hog</th>
+      <th>leopard</th>
+      <th>monkey_prosimian</th>
+      <th>rodent</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>ZJ000000</td>
+      <td>train_features/ZJ000000.jpg</td>
+      <td>S0120</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>ZJ000001</td>
+      <td>train_features/ZJ000001.jpg</td>
+      <td>S0069</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>ZJ000002</td>
+      <td>train_features/ZJ000002.jpg</td>
+      <td>S0009</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>ZJ000003</td>
+      <td>train_features/ZJ000003.jpg</td>
+      <td>S0008</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>ZJ000004</td>
+      <td>train_features/ZJ000004.jpg</td>
+      <td>S0036</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="cell cell-code">
+            <div class="cell-prompt input-prompt">In [7]:</div>
+            <div class="cell-content">
+                <div class="input-area"><pre># Convert one-hot columns into a single label column
+classes = ['antelope_duiker', 'bird', 'blank', 'civet_genet', 'hog', 'leopard', 'monkey_prosimian', 'rodent']
+df['label'] = df[classes].idxmax(axis=1)
+
+# Check result for id and result
+df[['id', 'label']].head(5)</pre></div>
+                <div class="output-area">
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt">Out[7]:</div>
+                        <div class="output-content">
+                            <div class="output-html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>id</th>
+      <th>label</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>ZJ000000</td>
+      <td>bird</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>ZJ000001</td>
+      <td>monkey_prosimian</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>ZJ000002</td>
+      <td>bird</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>ZJ000003</td>
+      <td>monkey_prosimian</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>ZJ000004</td>
+      <td>leopard</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="cell cell-code">
+            <div class="cell-prompt input-prompt">In [8]:</div>
+            <div class="cell-content">
+                <div class="input-area"><pre># Add full image path
+df['image_path'] = '/kaggle/input/competition-files/' + df['filepath']
+
+# Check path
+df[['filepath', 'image_path']].head(5)</pre></div>
+                <div class="output-area">
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt">Out[8]:</div>
+                        <div class="output-content">
+                            <div class="output-html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>filepath</th>
+      <th>image_path</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>train_features/ZJ000000.jpg</td>
+      <td>/kaggle/input/competition-files/train_features/ZJ000000.jpg</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>train_features/ZJ000001.jpg</td>
+      <td>/kaggle/input/competition-files/train_features/ZJ000001.jpg</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>train_features/ZJ000002.jpg</td>
+      <td>/kaggle/input/competition-files/train_features/ZJ000002.jpg</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>train_features/ZJ000003.jpg</td>
+      <td>/kaggle/input/competition-files/train_features/ZJ000003.jpg</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>train_features/ZJ000004.jpg</td>
+      <td>/kaggle/input/competition-files/train_features/ZJ000004.jpg</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="cell cell-code">
+            <div class="cell-prompt input-prompt">In [9]:</div>
+            <div class="cell-content">
+                <div class="input-area"><pre># Convert label to digit (0~7)
+df['label_code'] = df['label'].astype('category').cat.codes
+
+# Create fold column
+df['fold'] = -1
+
+# Set up splitter
+skf = StratifiedGroupKFold(n_splits=5, shuffle=True, random_state=42)
+
+# Assign fold numbers
+for fold, (train_idx, val_idx) in enumerate(skf.split(df, df['label_code'], groups=df['site'])):
+    df.loc[val_idx, 'fold'] = fold</pre></div>
+            </div>
+        </div>
+        <div class="cell cell-code">
+            <div class="cell-prompt input-prompt">In [10]:</div>
+            <div class="cell-content">
+                <div class="input-area"><pre># Display the site that are split into different fold
+for fold in sorted(df['fold'].unique()):
+    sites_in_fold = df[df['fold'] == fold]['site'].unique()
+    print(f"Fold {fold} sites ({len(sites_in_fold)}): {sites_in_fold}")</pre></div>
+                <div class="output-area">
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-stream">Fold 0 sites (28): ['S0019' 'S0014' 'S0105' 'S0068' 'S0042' 'S0184' 'S0074' 'S0157' 'S0095'
+ 'S0031' 'S0046' 'S0005' 'S0158' 'S0179' 'S0163' 'S0002' 'S0104' 'S0175'
+ 'S0146' 'S0164' 'S0173' 'S0085' 'S0129' 'S0045' 'S0138' 'S0119' 'S0198'
+ 'S0143']
+Fold 1 sites (30): ['S0036' 'S0060' 'S0059' 'S0080' 'S0075' 'S0038' 'S0170' 'S0070' 'S0021'
+ 'S0026' 'S0004' 'S0081' 'S0127' 'S0108' 'S0155' 'S0136' 'S0013' 'S0156'
+ 'S0084' 'S0137' 'S0172' 'S0193' 'S0183' 'S0169' 'S0106' 'S0094' 'S0113'
+ 'S0182' 'S0178' 'S0006']
+Fold 2 sites (30): ['S0009' 'S0061' 'S0188' 'S0097' 'S0077' 'S0022' 'S0089' 'S0025' 'S0024'
+ 'S0018' 'S0125' 'S0110' 'S0112' 'S0122' 'S0130' 'S0174' 'S0056' 'S0020'
+ 'S0030' 'S0096' 'S0029' 'S0133' 'S0161' 'S0101' 'S0177' 'S0131' 'S0117'
+ 'S0098' 'S0190' 'S0007']
+Fold 3 sites (29): ['S0120' 'S0008' 'S0047' 'S0076' 'S0049' 'S0063' 'S0027' 'S0035' 'S0051'
+ 'S0123' 'S0001' 'S0023' 'S0043' 'S0088' 'S0186' 'S0153' 'S0144' 'S0147'
+ 'S0176' 'S0150' 'S0017' 'S0180' 'S0044' 'S0167' 'S0196' 'S0028' 'S0192'
+ 'S0054' 'S0092']
+Fold 4 sites (31): ['S0069' 'S0083' 'S0003' 'S0071' 'S0062' 'S0073' 'S0053' 'S0171' 'S0134'
+ 'S0159' 'S0149' 'S0185' 'S0124' 'S0016' 'S0121' 'S0032' 'S0050' 'S0093'
+ 'S0160' 'S0115' 'S0141' 'S0102' 'S0010' 'S0139' 'S0197' 'S0015' 'S0107'
+ 'S0191' 'S0078' 'S0079' 'S0148']
+</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="cell cell-code">
+            <div class="cell-prompt input-prompt">In [11]:</div>
+            <div class="cell-content">
+                <div class="input-area"><pre># Use fold 0 for validation
+fold = 0
+df_train = df[df['fold'] != fold]
+df_valid = df[df['fold'] == fold]</pre></div>
+            </div>
+        </div>
+        <div class="cell cell-markdown">
+            <div class="cell-prompt prompt-empty">&nbsp;</div>
+            <div class="cell-content">
+                <div class="markdown-cell">We modified the training data to help the model generalize better:<br>- Used aug_transforms with:<br>    - Random horizontal and vertical flip<br>        - Animals can appear in different orientations in camera trap images.<br>        - Flipping teaches the model not to depend on a fixed direction (like always expecting an animal to face right), which improves robustness.<br>    - Rotation up to 15°<br>        - Some cameras might not be perfectly level, or animals may be captured at odd angles.<br>        - Adding rotation makes the model less sensitive to small orientation changes and improves spatial awareness.<br>    - Zoom up to 1.2×<br>        - Animals may appear closer or farther from the camera.<br>        - Zoom augmentation mimics this variability and helps the model learn features at different scales. <br>    - Lighting changes (brightness/contrast)<br>        - Lighting conditions can vary drastically in wildlife photography (e.g. day vs night, sun vs shadow).<br>        - Adjusting brightness/contrast forces the model to focus on shape and texture, not lighting alone.<br>    - RandomErasing<br>        - Helps the model learn to recognize animals even when parts of them are missing or obscured.</div>
+            </div>
+        </div>
+        <div class="cell cell-markdown">
+            <div class="cell-prompt prompt-empty">&nbsp;</div>
+            <div class="cell-content">
+                <div class="markdown-cell">All these augmentations improve the model's ability to handle unseen variations in the test set, leading to better generalization and often lower log loss even if accuracy doesn’t increase directly.</div>
+            </div>
+        </div>
+        <div class="cell cell-code">
+            <div class="cell-prompt input-prompt">In [12]:</div>
+            <div class="cell-content">
+                <div class="input-area"><pre># Set seed for reproducibility
+set_seed(42)
+
+# Create DataBlock with augmentations
+dblock = DataBlock(
+    blocks=(ImageBlock, CategoryBlock),
+    get_x=ColReader('image_path'),
+    get_y=ColReader('label'),
+    splitter=IndexSplitter(df_valid.index),
+    item_tfms=RandomResizedCrop(224, min_scale=0.7),  # Replace Resize with random crop
+    batch_tfms = [
+        *aug_transforms(mult=1.0, do_flip=True, flip_vert=True, max_rotate=20.0, max_zoom=1.2, max_lighting=0.2),
+        RandomErasing(p=0.7, max_count=8, sh=0.1)
+    ]
+)</pre></div>
+            </div>
+        </div>
+        <div class="cell cell-markdown">
+            <div class="cell-prompt prompt-empty">&nbsp;</div>
+            <div class="cell-content">
+                <div class="markdown-cell">Removed MixUp and try only with RandomErasing</div>
+            </div>
+        </div>
+        <div class="cell cell-code">
+            <div class="cell-prompt input-prompt">In [13]:</div>
+            <div class="cell-content">
+                <div class="input-area"><pre># Create DataLoaders
+dls = dblock.dataloaders(df, bs=64)</pre></div>
+            </div>
+        </div>
+        <div class="cell cell-code">
+            <div class="cell-prompt input-prompt">In [14]:</div>
+            <div class="cell-content">
+                <div class="input-area"><pre>learn = vision_learner(dls, resnet101, metrics=[accuracy, error_rate])</pre></div>
+                <div class="output-area">
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-stream output-stderr">Downloading: "https://download.pytorch.org/models/resnet101-cd907fc2.pth" to /root/.cache/torch/hub/checkpoints/resnet101-cd907fc2.pth
+100%|██████████| 171M/171M [00:00&lt;00:00, 219MB/s]
+</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="cell cell-code">
+            <div class="cell-prompt input-prompt">In [15]:</div>
+            <div class="cell-content">
+                <div class="input-area"><pre># Set the custom loss function
+learn.loss_func = LabelSmoothingCrossEntropy(eps=0.1)</pre></div>
+            </div>
+        </div>
+        <div class="cell cell-code">
+            <div class="cell-prompt input-prompt">In [16]:</div>
+            <div class="cell-content">
+                <div class="input-area"><pre># Check for validation set
+len(learn.dls.valid.items)</pre></div>
+                <div class="output-area">
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt">Out[16]:</div>
+                        <div class="output-content">
+                            <div class="output-result"><pre>2220</pre></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="cell cell-markdown">
+            <div class="cell-prompt prompt-empty">&nbsp;</div>
+            <div class="cell-content">
+                <div class="markdown-cell">As the vallidation set is ready we can go for the next step</div>
+            </div>
+        </div>
+        <div class="cell cell-markdown">
+            <div class="cell-prompt prompt-empty">&nbsp;</div>
+            <div class="cell-content">
+                <div class="markdown-cell"><h1>2. Repeat the baseline training</h1><br>For better result using unfreeze + lower LR.</div>
+            </div>
+        </div>
+        <div class="cell cell-code">
+            <div class="cell-prompt input-prompt">In [17]:</div>
+            <div class="cell-content">
+                <div class="input-area"><pre>learn.lr_find()
+# Result: SuggestedLRs(valley=0.00010964782268274575), SuggestedLRs(valley=6.30957365501672e-05)</pre></div>
+                <div class="output-area">
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-html">
+<style>
+    /* Turns off some styling */
+    progress {
+        /* gets rid of default border in Firefox and Opera. */
+        border: none;
+        /* Needs to be in here for Safari polyfill so background images work as expected. */
+        background-size: auto;
+    }
+    progress:not([value]), progress:not([value])::-webkit-progress-bar {
+        background: repeating-linear-gradient(45deg, #7e7e7e, #7e7e7e 10px, #5c5c5c 10px, #5c5c5c 20px);
+    }
+    .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+        background: #F44336;
+    }
+</style>
+</div>
+                        </div>
+                    </div>
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-html"></div>
+                        </div>
+                    </div>
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-result"><pre>SuggestedLRs(valley=0.0014454397605732083)</pre></div>
+                        </div>
+                    </div>
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <img class="output-image" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAjoAAAG1CAYAAADwRl5QAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90bGliIHZlcnNpb24zLjcuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8pXeV/AAAACXBIWXMAAA9hAAAPYQGoP6dpAABW9UlEQVR4nO3dd3xUVfrH8c+kJ6QRICSQQKTX0EsQrCCCImDBBdaAYmd/i7q6irruoqvYy66K2AAVFhUFsYGIIL333kmAkAAhnbSZ+/tjyGAkSBImuTOT7/v1mhfOnTszzz1mMk/Oec45FsMwDEREREQ8kJfZAYiIiIhUFSU6IiIi4rGU6IiIiIjHUqIjIiIiHkuJjoiIiHgsJToiIiLisZToiIiIiMdSoiMiIiIey8fsAKqbzWbj2LFjhISEYLFYzA5HREREysEwDLKzs2nQoAFeXuXvp6lxic6xY8eIjY01OwwRERGphOTkZGJiYsp9fo1LdEJCQgB7Q4WGhpocjYiIiJRHVlYWsbGxju/x8qpxiU7JcFVoaKgSHRERETdT0bITFSOLiIiIx1KiIyIiIh6rxg1dlZfVaqWoqMjsMDyWr68v3t7eZochIiIeTonO7xiGwfHjx8nIyDA7FI8XHh5OVFSUpvmLiEiVUaLzOyVJTmRkJEFBQfoSrgKGYZCXl0daWhoA0dHRJkckIiKeSonOb1itVkeSU6dOHbPD8WiBgYEApKWlERkZqWEsERGpEipG/o2SmpygoCCTI6kZStpZtVAiIlJVlOiUQcNV1UPtLCIiVU2JjoiIiHgsJToiIiLisZToVBWbFQ4uha2z7P/arGZH9Ifi4uJ48803HfctFgtz5swxLR4RERFn0KyrqrBjLsx7HLKOnTsW2gCufwna3GReXCIiIjWMenScbcdc+CKxdJIDkJViP75jrjlxiYiIVLENSaf584erefbbHWaH4qBEx5lsVntPDkYZD549Nu8Jpw9jvf/++zRo0ACbzVbq+ODBg7nrrrvYv38/gwcPpn79+gQHB9OtWzd+/vnnCr1HcnIyw4YNIzw8nIiICAYPHsyhQ4cAWLJkCb6+vhw/frzUcx566CH69OlzSdcmIiLuIy0rn2X7TrLlSIbZoTgo0XGmwyvO78kpxYCso/bznOi2227j1KlTLFq0yHEsPT2defPmMXLkSHJychg4cCALFy5k48aNXH/99QwaNIikpKRyvX5RURH9+/cnJCSEpUuXsnz5coKDg7n++uspLCzkiiuuoEmTJnz66aelnjN9+nTuuusup16riIi4rvwi+x/cAb6uswisEh1nykl17nnlVLt2bQYMGMCMGTMcx2bNmkXdunW5+uqr6dChA/fddx/t2rWjefPmPPfcczRt2pS5c8s3jPb5559js9n48MMPad++Pa1bt2bKlCkkJSWxePFiAMaMGcOUKVMcz/n222/Jz89n2LBhTr1WERFxXWeK7CMWSnQ8VXB9555XASNHjuSrr76ioKAAgOnTp/OnP/0JLy8vcnJyePTRR2ndujXh4eEEBwezc+fOcvfobN68mX379hESEkJwcDDBwcFERESQn5/P/v37ARg9ejT79u1j1apVAEydOpVhw4ZRq1Ytp1+riIi4pnxHouM66YVmXTlT41722VVZKZRdp2OxP964l9PfetCgQRiGwffff0+3bt1YunQpb7zxBgCPPvooCxYs4NVXX6VZs2YEBgZy6623UlhYWK7XzsnJoUuXLkyfPv28x+rVqwdAZGQkgwYNYsqUKVx22WX8+OOPjt4eERGpGUp6dAJdqEdHiY4zeXnbp5B/kQhYKJ3snN3u4PoX7ec5WUBAADfffDPTp09n3759tGzZks6dOwOwfPlyRo8ezdChQwF74lJSSFwenTt35vPPPycyMpLQ0NALnnf33XczfPhwYmJiaNq0KZdffvklXZOIiLiX/EINXXm+NjfBsE8gNLr08dAG9uNVuI7OyJEj+f777/n4448ZOXKk43jz5s35+uuv2bRpE5s3b2bEiBHnzdC62OvWrVuXwYMHs3TpUg4ePMjixYv561//ypEjRxzn9e/fn9DQUP79739z5513OvXaRETE9eUX279bAv2U6Hi2NjfBQ9tg1Hdwy0f2fx/aWuWLBV5zzTVERESwe/duRowY4Tj++uuvU7t2bXr16sWgQYPo37+/o7enPIKCgliyZAmNGjXi5ptvpnXr1owZM4b8/PxSPTxeXl6MHj0aq9VKYmKiU69NRERc3xkX7NHR0FVV8fKGy6p3DRkvLy+OHTt/entcXBy//PJLqWNjx44tdf/3Q1mGUbrGKCoqimnTpl00hqNHjzJw4ECio6Mveq6IiHgWFSOLx8rMzGTr1q3MmDGj3NPWRUTEs6gYWTzW4MGDWbNm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ubm5JCQklHlOr169WL9+PWvWrAHgwIED/PDDDwwcOPCCr1tQUEBWVlapm4iIiDiHhq4uYuvWrSQkJJCfn09wcDCzZ8+mTZs2ZZ47YsQITp48Se/evTEMg+LiYu6//36efPLJC77+xIkTmTBhQlWFLyIiUqNpU8+LaNmyJZs2bWL16tU88MADjBo1ih07dpR57uLFi3nhhRd499132bBhA19//TXff/89zz333AVff/z48WRmZjpuycnJVXUpIiIiNUqR1UaxzQBcN9GxGIZhmB3Eb/Xt25emTZsyefLk8x7r06cPPXv25JVXXnEc++yzz7j33nvJycnBy+vieVtWVhZhYWFkZmYSGhrq1NhFRERqkqz8IuL/9RMAu567vkqHryr7/W16j87v2Ww2CgoKynwsLy/vvGTG29veqC6Wr4mIiHi8kmEriwX8fVwupQBMrtEZP348AwYMoFGjRmRnZzNjxgwWL17M/PnzAUhMTKRhw4ZMnDgRsM/Sev311+nUqRM9evRg3759/OMf/2DQoEGOhEdERESqR36hfcZVgI83FovF5GjKZmqik5aWRmJiIikpKYSFhREfH8/8+fPp168fAElJSaV6cJ5++mksFgtPP/00R48epV69egwaNIjnn3/erEsQERGpsUp2LnfV7R/ABWt0qppqdERERJxjc3IGg99ZToOwAFaMv7ZK38tjanRERETEPTjW0HHhHh0lOiIiIlIpZ1x8DR1QoiMiIiKV5OqrIoMSHREREakkV9/nCpToiIiISCWd27ncddMJ141MREREXJqGrkRERMRjnVGiIyIiIp5KNToiIiLisfJVoyMiIiKe6kyh1tERERERD6WVkUVERMRjOYqRfZToiIiIiIdxFCOrR0dEREQ8jYqRRURExGPla1NPERER8VQlNTr+SnRERETE05xRj46IiIh4qgKtjCwiIiKeSntdiYiIiMdSMbKIiIh4JMMwftOj47rphOtGJiIiIi6r0GrDMOz/rS0gRERExKPkF9oc/60tIERERMSjlAxbeXtZ8PW2mBzNhSnRERERkQr7bSGyxaJER0RERDyIOxQigxIdERERqYR8N1hDB5ToiIiISCW4w2KBoERHREREKsEdtn8AJToiIiJSCarREREREY91plBDVyIiIuKh8ouV6IiIiIiHKunRUY2OiIiIeJyCYhUji4iIiIc6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P9/o06eP8cknnzgr1CpVlT8TixYtMm655RZnhFntKtMuy5cvN4YMGeJ4fNy4ccb06dMr9L7q0amgwsJC1q9fT9++fR3HvLy86Nu3LytXrqzQa7nysNXFOKMdunXrRlpaGqdPn8Zms7FkyRJat25dVSFXGWe0RW5uLtnZ2YC9QP2XX36hbdu2VRJvVXFGO0ycOJHk5GQOHTrEq6++yj333MMzzzxTVSFXCWe0Q2pqquPnITMzkyVLltCyZcsqibcqOaMtDMNg9OjRXHPNNdxxxx1VFWqVcub3hicpT7t0796dbdu2cfToUXJycvjxxx/p379/hd5HlZ8VdPLkSaxWK/Xr1y91vH79+uzatavcr5OZmcmaNWv46quvnB1itXBGO/j4+PDCCy9wxRVXYBgG1113HTfeeGNVhFulnNEWqampDB06FLDPuLnnnnvo1q2b02OtSs76bLg7Z7TD4cOHuffeex1FyP/3f/9H+/btqyLcKuWMtli+fDmff/458fHxjvqOTz/91K3aw1mfjb59+7J582Zyc3OJiYnhyy+/JCEhwdnhVpvytIuPjw+vvfYaV199NTabjb///e8Vnn2oRMckYWFhLjvmXp0GDBhQo2fXlGjSpAmbN282OwyXMnr0aLNDME337t3ZtGmT2WG4hN69e2Oz2cwOwyX8/PPPZodgiptuuombbrqp0s/X0FUF1a1bF29v7/OSlNTUVKKiokyKqvqpHc5RW9ipHezUDueoLezUDmWrrnZRolNBfn5+dOnShYULFzqO2Ww2Fi5c6NZdiBWldjhHbWGndrBTO5yjtrBTO5StutpFQ1dlyMnJYd++fY77Bw8eZNOmTURERNCoUSMeeeQRRo0aRdeuXenevTtvvvkmubm53HnnnSZG7Xxqh3PUFnZqBzu1wzlqCzu1Q9lcol0qN0nMsy1atMgAzruNGjXKcc5///tfo1GjRoafn5/RvXt3Y9WqVeYFXEXUDueoLezUDnZqh3PUFnZqh7K5QrtorysRERHxWKrREREREY+lREdEREQ8lhIdERER8VhKdERERMRjKdERERERj6VER0RERDyWEh0RERHxWEp0RERExGMp0RERtxIXF8ebb75pdhgi4iaU6IjIeUaPHs2QIUPMDqNMa9eu5d57763y94mLi8NisWCxWAgKCqJ9+/Z8+OGHFX4di8XCnDlznB+giJSLEh0RcQlFRUXlOq9evXoEBQVVcTR2zz77LCkpKWzbto0///nP3HPPPfz444/V8t4i4hxKdESkwrZt28aAAQMIDg6mfv363HHHHZw8edLx+Lx58+jduzfh4eHUqVOHG2+8kf379zseP3ToEBaLhc8//5wrr7ySgIAApk+f7uhJevXVV4mOjqZOnTqMHTu2VBL0+6Eri8XChx9+yNChQwkKCqJ58+bMnTu3VLxz586lefPmBAQEcPXVVzNt2jQsFgsZGRl/eJ0hISFERUXRpEkTHn/8cSIiIliwYIHj8bVr19KvXz/q1q1LWFgYV155JRs2bCgVK8DQoUOxWCyO+wDffPMNnTt3JiAggCZNmjBhwgSKi4vL0/wiUgFKdESkQjIyMrjmmmvo1KkT69atY968eaSmpjJs2DDHObm5uTzyyCOsW7eOhQsX4uXlxdChQ7HZbKVe64knnmDcuHHs3LmT/v37A7Bo0SL279/PokWLmDZtGlOnTmXq1Kl/GNOECRMYNmwYW7ZsYeDAgYwcOZL09HQADh48yK233sqQIUPYvHkz9913H0899VSFrtlms/HVV19x+vRp/Pz8HMezs7MZNWoUy5YtY9WqVTRv3pyBAweSnZ0N2BMhgClTppCSkuK4v3TpUhITExk3bhw7duxg8uTJTJ06leeff75CcYlIOTh1L3QR8QijRo0yBg8eXOZjzz33nHHdddeVOpacnGwAxu7du8t8zokTJwzA2Lp1q2EYhnHw4EEDMN58883z3rdx48ZGcXGx49htt91m3H777Y77jRs3Nt544w3HfcB4+umnHfdzcnIMwPjxxx8NwzCMxx9/3GjXrl2p93nqqacMwDh9+nTZDXD2ffz8/IxatWoZPj4+BmBEREQYe/fuveBzrFarERISYnz77bel4ps9e3ap86699lrjhRdeKHXs008/NaKjoy/42iJSOerREZEK2bx5M4sWLSI4ONhxa9WqFYBjeGrv3r0MHz6cJk2aEBoa6hiySUpKKvVaXbt2Pe/127Zti7e3t+N+dHQ0aWlpfxhTfHy8479r1apFaGio4zm7d++mW7dupc7v3r17ua71scceY9OmTfzyyy/06NGDN954g2bNmjkeT01N5Z577qF58+aEhYURGhpKTk7Oedf5e5s3b+bZZ58t1Yb33HMPKSkp5OXllSs2ESkfH7MDEBH3kpOTw6BBg3jppZfOeyw6OhqAQYMG0bhxYz744AMaNGiAzWajXbt2FBYWljq/Vq1a572Gr69vqfsWi+W8IS9nPKc86tatS7NmzWjWrBlffvkl7du3p2vXrrRp0waAUaNGcerUKd566y0aN26Mv78/CQkJ513n7+Xk5DBhwgRuvvnm8x4LCAi45LhF5BwlOiJSIZ07d+arr74iLi4OH5/zf4WcOnWK3bt388EHH9CnTx8Ali1bVt1hOrRs2ZIffvih1LGSWpmKiI2N5fbbb2f8+PF88803ACxfvpx3332XgQMHApCcnFyqKBvsSZjVai11rHPnzuzevbtU75CIVA0NXYlImTIzM9m0aVOpW3JyMmPHjiU9PZ3hw4ezdu1a9u/fz/z587nzzjuxWq3Url2bOnXq8P7777Nv3z5++eUXHnnkEdOu47777mPXrl08/vjj7Nmzhy+++MJR3GyxWCr0WuPGjePbb79l3bp1ADRv3pxPP/2UnTt3snr1akaOHElgYGCp58TFxbFw4UKOHz/O6dOnAXjmmWf45JNPmDBhAtu3b2fnzp3MnDmTp59++tIvWERKUaIjImVavHgxnTp1KnWbMGECDRo0YPny5VitVq677jrat2/PQw89RHh4OF5eXnh5eTFz5kzWr19Pu3btePjhh3nllVdMu47LLruMWbNm8fXXXxMfH8+kSZMcs678/f0r9Fpt2rThuuuu45lnngHgo48+4vTp03Tu3Jk77riDv/71r0RGRpZ6zmuvvcaCBQuIjY2lU6dOAPTv35/vvvuOn376iW7dutGzZ0/eeOMNGjdu7IQrFpHfshiGYZgdhIhIdXr++ed57733SE5ONjsUEaliqtEREY/37rvv0q1bN+rUqcPy5ct55ZVX+Mtf/mJ2WCJSDZToiIjH27t3L//+979JT0+nUaNG/O1vf2P8+PFmhyUi1UBDVyIiIuKxVIwsIiIiHkuJjoiIiHgsJToiIiLisZToiIiIiMdSoiMiIiIeS4mOiIiIeCwlOiIiIuKxlOiIiIiIx1KiIyIiIh7r/wGN6/e+ZESFKAAAAABJRU5ErkJggg==
+" alt="Output" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="cell cell-code">
+            <div class="cell-prompt input-prompt">In [18]:</div>
+            <div class="cell-content">
+                <div class="input-area"><pre># learn.fit_one_cycle(3, 3e-3)     # train head (frozen backbone)
+# Conservative LR (safer generalisation):
+learn.fine_tune(6, base_lr=5e-4)</pre></div>
+                <div class="output-area">
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-html">
+<style>
+    /* Turns off some styling */
+    progress {
+        /* gets rid of default border in Firefox and Opera. */
+        border: none;
+        /* Needs to be in here for Safari polyfill so background images work as expected. */
+        background-size: auto;
+    }
+    progress:not([value]), progress:not([value])::-webkit-progress-bar {
+        background: repeating-linear-gradient(45deg, #7e7e7e, #7e7e7e 10px, #5c5c5c 10px, #5c5c5c 20px);
+    }
+    .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+        background: #F44336;
+    }
+</style>
+</div>
+                        </div>
+                    </div>
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-html"><table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: left;">
+      <th>epoch</th>
+      <th>train_loss</th>
+      <th>valid_loss</th>
+      <th>accuracy</th>
+      <th>error_rate</th>
+      <th>time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>2.339958</td>
+      <td>2.077185</td>
+      <td>0.353153</td>
+      <td>0.646847</td>
+      <td>01:38</td>
+    </tr>
+  </tbody>
+</table></div>
+                        </div>
+                    </div>
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-html">
+<style>
+    /* Turns off some styling */
+    progress {
+        /* gets rid of default border in Firefox and Opera. */
+        border: none;
+        /* Needs to be in here for Safari polyfill so background images work as expected. */
+        background-size: auto;
+    }
+    progress:not([value]), progress:not([value])::-webkit-progress-bar {
+        background: repeating-linear-gradient(45deg, #7e7e7e, #7e7e7e 10px, #5c5c5c 10px, #5c5c5c 20px);
+    }
+    .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+        background: #F44336;
+    }
+</style>
+</div>
+                        </div>
+                    </div>
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-html"><table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: left;">
+      <th>epoch</th>
+      <th>train_loss</th>
+      <th>valid_loss</th>
+      <th>accuracy</th>
+      <th>error_rate</th>
+      <th>time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>1.997766</td>
+      <td>1.980530</td>
+      <td>0.368018</td>
+      <td>0.631982</td>
+      <td>02:06</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>1.800508</td>
+      <td>1.870493</td>
+      <td>0.366216</td>
+      <td>0.633784</td>
+      <td>02:06</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>1.599892</td>
+      <td>1.790830</td>
+      <td>0.415315</td>
+      <td>0.584685</td>
+      <td>02:06</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>1.482238</td>
+      <td>1.725299</td>
+      <td>0.429730</td>
+      <td>0.570270</td>
+      <td>02:06</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>1.407328</td>
+      <td>1.734770</td>
+      <td>0.412613</td>
+      <td>0.587387</td>
+      <td>02:06</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>1.377545</td>
+      <td>1.706088</td>
+      <td>0.431982</td>
+      <td>0.568018</td>
+      <td>02:06</td>
+    </tr>
+  </tbody>
+</table></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="cell cell-code">
+            <div class="cell-prompt input-prompt">In [19]:</div>
+            <div class="cell-content">
+                <div class="input-area"><pre># Get validation using TTA
+tta_preds, tta_targs = learn.tta(dl=learn.dls.valid)</pre></div>
+                <div class="output-area">
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-html">
+<style>
+    /* Turns off some styling */
+    progress {
+        /* gets rid of default border in Firefox and Opera. */
+        border: none;
+        /* Needs to be in here for Safari polyfill so background images work as expected. */
+        background-size: auto;
+    }
+    progress:not([value]), progress:not([value])::-webkit-progress-bar {
+        background: repeating-linear-gradient(45deg, #7e7e7e, #7e7e7e 10px, #5c5c5c 10px, #5c5c5c 20px);
+    }
+    .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+        background: #F44336;
+    }
+</style>
+</div>
+                        </div>
+                    </div>
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-html">
+    <div>
+      <progress value='0' class='' max='6' style='width:300px; height:20px; vertical-align: middle;'></progress>
+      
+    </div>
+    
+</div>
+                        </div>
+                    </div>
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-html">
+<style>
+    /* Turns off some styling */
+    progress {
+        /* gets rid of default border in Firefox and Opera. */
+        border: none;
+        /* Needs to be in here for Safari polyfill so background images work as expected. */
+        background-size: auto;
+    }
+    progress:not([value]), progress:not([value])::-webkit-progress-bar {
+        background: repeating-linear-gradient(45deg, #7e7e7e, #7e7e7e 10px, #5c5c5c 10px, #5c5c5c 20px);
+    }
+    .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+        background: #F44336;
+    }
+</style>
+</div>
+                        </div>
+                    </div>
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-html"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="cell cell-markdown">
+            <div class="cell-prompt prompt-empty">&nbsp;</div>
+            <div class="cell-content">
+                <div class="markdown-cell"><h1>3. Set up the competition metric (Log Loss)</h1></div>
+            </div>
+        </div>
+        <div class="cell cell-code">
+            <div class="cell-prompt input-prompt">In [20]:</div>
+            <div class="cell-content">
+                <div class="input-area"><pre># Get list of class names in the same order as model output
+class_names = learn.dls.vocab
+class_names</pre></div>
+                <div class="output-area">
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt">Out[20]:</div>
+                        <div class="output-content">
+                            <div class="output-result"><pre>['antelope_duiker', 'bird', 'blank', 'civet_genet', 'hog', 'leopard', 'monkey_prosimian', 'rodent']</pre></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="cell cell-code">
+            <div class="cell-prompt input-prompt">In [21]:</div>
+            <div class="cell-content">
+                <div class="input-area"><pre># Convert target indices to one-hot encoding
+targs_onehot = np.eye(len(class_names))[tta_targs.numpy()]
+targs_onehot</pre></div>
+                <div class="output-area">
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt">Out[21]:</div>
+                        <div class="output-content">
+                            <div class="output-result"><pre>array([[0., 0., 0., ..., 0., 0., 0.],
+       [0., 0., 0., ..., 1., 0., 0.],
+       [0., 0., 0., ..., 1., 0., 0.],
+       ...,
+       [0., 0., 0., ..., 1., 0., 0.],
+       [0., 0., 1., ..., 0., 0., 0.],
+       [0., 1., 0., ..., 0., 0., 0.]])</pre></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="cell cell-markdown">
+            <div class="cell-prompt prompt-empty">&nbsp;</div>
+            <div class="cell-content">
+                <div class="markdown-cell">Use log loss as the validation metric.</div>
+            </div>
+        </div>
+        <div class="cell cell-code">
+            <div class="cell-prompt input-prompt">In [22]:</div>
+            <div class="cell-content">
+                <div class="input-area"><pre># Calculate validation log loss
+val_log_loss = log_loss(targs_onehot, tta_preds.numpy())
+print(f'Validation Log Loss (TTA): {val_log_loss:.5f}')</pre></div>
+                <div class="output-area">
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-stream">Validation Log Loss (TTA): 1.47089
+</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="cell cell-markdown">
+            <div class="cell-prompt prompt-empty">&nbsp;</div>
+            <div class="cell-content">
+                <div class="markdown-cell"><h1>4. Prediction Pipeline (with TTA method)</h1></div>
+            </div>
+        </div>
+        <div class="cell cell-code">
+            <div class="cell-prompt input-prompt">In [23]:</div>
+            <div class="cell-content">
+                <div class="input-area"><pre># Create test dataloader from existing DataLoaders
+test_dl = learn.dls.test_dl(test_files)</pre></div>
+            </div>
+        </div>
+        <div class="cell cell-code">
+            <div class="cell-prompt input-prompt">In [24]:</div>
+            <div class="cell-content">
+                <div class="input-area"><pre># Get predictions (TTA)
+preds, _ = learn.tta(dl=test_dl)</pre></div>
+                <div class="output-area">
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-html">
+<style>
+    /* Turns off some styling */
+    progress {
+        /* gets rid of default border in Firefox and Opera. */
+        border: none;
+        /* Needs to be in here for Safari polyfill so background images work as expected. */
+        background-size: auto;
+    }
+    progress:not([value]), progress:not([value])::-webkit-progress-bar {
+        background: repeating-linear-gradient(45deg, #7e7e7e, #7e7e7e 10px, #5c5c5c 10px, #5c5c5c 20px);
+    }
+    .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+        background: #F44336;
+    }
+</style>
+</div>
+                        </div>
+                    </div>
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-html">
+    <div>
+      <progress value='0' class='' max='6' style='width:300px; height:20px; vertical-align: middle;'></progress>
+      
+    </div>
+    
+</div>
+                        </div>
+                    </div>
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-html">
+<style>
+    /* Turns off some styling */
+    progress {
+        /* gets rid of default border in Firefox and Opera. */
+        border: none;
+        /* Needs to be in here for Safari polyfill so background images work as expected. */
+        background-size: auto;
+    }
+    progress:not([value]), progress:not([value])::-webkit-progress-bar {
+        background: repeating-linear-gradient(45deg, #7e7e7e, #7e7e7e 10px, #5c5c5c 10px, #5c5c5c 20px);
+    }
+    .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+        background: #F44336;
+    }
+</style>
+</div>
+                        </div>
+                    </div>
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-html"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="cell cell-markdown">
+            <div class="cell-prompt prompt-empty">&nbsp;</div>
+            <div class="cell-content">
+                <div class="markdown-cell"><h1>5. Save Submission Format</h1></div>
+            </div>
+        </div>
+        <div class="cell cell-code">
+            <div class="cell-prompt input-prompt">In [25]:</div>
+            <div class="cell-content">
+                <div class="input-area"><pre># Create DataFrame with predictions
+preds_df = pd.DataFrame(preds.numpy(), columns=learn.dls.vocab)</pre></div>
+            </div>
+        </div>
+        <div class="cell cell-code">
+            <div class="cell-prompt input-prompt">In [26]:</div>
+            <div class="cell-content">
+                <div class="input-area"><pre># Add row_id from test_features.csv
+preds_df.insert(0, 'id', test_df['id'])</pre></div>
+            </div>
+        </div>
+        <div class="cell cell-code">
+            <div class="cell-prompt input-prompt">In [27]:</div>
+            <div class="cell-content">
+                <div class="input-area"><pre># Save
+preds_df.to_csv('submission.csv', index=False)</pre></div>
+            </div>
+        </div>
+        <div class="cell cell-code">
+            <div class="cell-prompt input-prompt">In [28]:</div>
+            <div class="cell-content">
+                <div class="input-area"><pre># print out the format
+df = pd.read_csv('/kaggle/input/competition-files/submission_format.csv')
+df.head()</pre></div>
+                <div class="output-area">
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt">Out[28]:</div>
+                        <div class="output-content">
+                            <div class="output-html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>id</th>
+      <th>antelope_duiker</th>
+      <th>bird</th>
+      <th>blank</th>
+      <th>civet_genet</th>
+      <th>hog</th>
+      <th>leopard</th>
+      <th>monkey_prosimian</th>
+      <th>rodent</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>ZJ016488</td>
+      <td>0.048233</td>
+      <td>0.189185</td>
+      <td>0.044914</td>
+      <td>0.199588</td>
+      <td>0.106118</td>
+      <td>0.132915</td>
+      <td>0.166410</td>
+      <td>0.112637</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>ZJ016489</td>
+      <td>0.097078</td>
+      <td>0.061400</td>
+      <td>0.026409</td>
+      <td>0.241530</td>
+      <td>0.144344</td>
+      <td>0.051780</td>
+      <td>0.287811</td>
+      <td>0.089648</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>ZJ016490</td>
+      <td>0.124658</td>
+      <td>0.089101</td>
+      <td>0.189225</td>
+      <td>0.174494</td>
+      <td>0.180540</td>
+      <td>0.079995</td>
+      <td>0.085672</td>
+      <td>0.076314</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>ZJ016491</td>
+      <td>0.109966</td>
+      <td>0.048397</td>
+      <td>0.055598</td>
+      <td>0.323600</td>
+      <td>0.322356</td>
+      <td>0.063252</td>
+      <td>0.008160</td>
+      <td>0.068671</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>ZJ016492</td>
+      <td>0.165742</td>
+      <td>0.184610</td>
+      <td>0.005431</td>
+      <td>0.136806</td>
+      <td>0.000389</td>
+      <td>0.122078</td>
+      <td>0.151521</td>
+      <td>0.233423</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="cell cell-code">
+            <div class="cell-prompt input-prompt">In [29]:</div>
+            <div class="cell-content">
+                <div class="input-area"><pre># print out to check if match the format
+df = pd.read_csv('submission.csv')
+df.head()</pre></div>
+                <div class="output-area">
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt">Out[29]:</div>
+                        <div class="output-content">
+                            <div class="output-html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>id</th>
+      <th>antelope_duiker</th>
+      <th>bird</th>
+      <th>blank</th>
+      <th>civet_genet</th>
+      <th>hog</th>
+      <th>leopard</th>
+      <th>monkey_prosimian</th>
+      <th>rodent</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>ZJ016488</td>
+      <td>0.056352</td>
+      <td>0.013871</td>
+      <td>0.154475</td>
+      <td>0.265977</td>
+      <td>0.018832</td>
+      <td>0.359049</td>
+      <td>0.042563</td>
+      <td>0.088881</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>ZJ016489</td>
+      <td>0.654294</td>
+      <td>0.104622</td>
+      <td>0.020785</td>
+      <td>0.025770</td>
+      <td>0.116573</td>
+      <td>0.007700</td>
+      <td>0.054007</td>
+      <td>0.016249</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>ZJ016490</td>
+      <td>0.426180</td>
+      <td>0.033181</td>
+      <td>0.017855</td>
+      <td>0.278124</td>
+      <td>0.182146</td>
+      <td>0.006301</td>
+      <td>0.045087</td>
+      <td>0.011126</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>ZJ016491</td>
+      <td>0.001440</td>
+      <td>0.003348</td>
+      <td>0.011371</td>
+      <td>0.032909</td>
+      <td>0.030547</td>
+      <td>0.908447</td>
+      <td>0.002996</td>
+      <td>0.008942</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>ZJ016492</td>
+      <td>0.390685</td>
+      <td>0.157307</td>
+      <td>0.057871</td>
+      <td>0.028062</td>
+      <td>0.037711</td>
+      <td>0.013912</td>
+      <td>0.257135</td>
+      <td>0.057317</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="cell cell-markdown">
+            <div class="cell-prompt prompt-empty">&nbsp;</div>
+            <div class="cell-content">
+                <div class="markdown-cell"><h1>Submit to Kaggle & Record Public Score</h1></div>
+            </div>
+        </div>
+        <div class="cell cell-markdown">
+            <div class="cell-prompt prompt-empty">&nbsp;</div>
+            <div class="cell-content">
+                <div class="markdown-cell"><h2>Initial result = 1.7160</h2><br>![image.png](attachment:4f1de06e-b92b-4672-8a23-1ccc4cadbac3.png)</div>
+            </div>
+        </div>
+        <div class="cell cell-markdown">
+            <div class="cell-prompt prompt-empty">&nbsp;</div>
+            <div class="cell-content">
+                <div class="markdown-cell">![image.png](attachment:957dd42d-a5ae-4bd0-a98e-ca740821fc52.png)</div>
+            </div>
+        </div>
+        <div class="cell cell-markdown">
+            <div class="cell-prompt prompt-empty">&nbsp;</div>
+            <div class="cell-content">
+                <div class="markdown-cell">- After added aug score: 1.6809 <br>- After changing the find_tine and remove mixup: 1.5377</div>
+            </div>
+        </div>
+        <div class="cell cell-markdown">
+            <div class="cell-prompt prompt-empty">&nbsp;</div>
+            <div class="cell-content">
+                <div class="markdown-cell">![image.png](attachment:7e2325bf-6ac6-4d44-b328-e04d21c6d535.png)</div>
+            </div>
+        </div>
+        <div class="cell cell-markdown">
+            <div class="cell-prompt prompt-empty">&nbsp;</div>
+            <div class="cell-content">
+                <div class="markdown-cell">- Result: 1.9076<br>- 10 epochs seem to be an overfitting, letting the model not performe well in unseen data</div>
+            </div>
+        </div>
+        <div class="cell cell-markdown">
+            <div class="cell-prompt prompt-empty">&nbsp;</div>
+            <div class="cell-content">
+                <div class="markdown-cell">![image.png](attachment:35c80344-f183-4252-91f3-637ec3ee0072.png)</div>
+            </div>
+        </div>
+        <div class="cell cell-markdown">
+            <div class="cell-prompt prompt-empty">&nbsp;</div>
+            <div class="cell-content">
+                <div class="markdown-cell">- Using 6 epoch and Label Smoothing Cross Entrop<br>- Result in great increase of performance to 1.4788</div>
+            </div>
+        </div>
+        <div class="cell cell-markdown">
+            <div class="cell-prompt prompt-empty">&nbsp;</div>
+            <div class="cell-content">
+                <div class="markdown-cell">![image.png](attachment:f56451bc-2dc1-467e-a8a9-b1de1ba28b3e.png)<br></div>
+            </div>
+        </div>
+        <div class="cell cell-markdown">
+            <div class="cell-prompt prompt-empty">&nbsp;</div>
+            <div class="cell-content">
+                <div class="markdown-cell">- The result future improve using tta pred with 6 epoch and custom loss<br>- I also tried 8 epoch that didn't make the performace better so just stick with 6 epoch</div>
+            </div>
+        </div>
+        <div class="cell cell-markdown">
+            <div class="cell-prompt prompt-empty">&nbsp;</div>
+            <div class="cell-content">
+                <div class="markdown-cell"><h1>6. Reflection</h1></div>
+            </div>
+        </div>
+        <div class="cell cell-markdown">
+            <div class="cell-prompt prompt-empty">&nbsp;</div>
+            <div class="cell-content">
+                <div class="markdown-cell">Initially, the ResNet101 model achieved a log loss of 1.7160. To improve generalisation and performance, data augmentation techniques were introduced — including random flips, rotation, zoom, MixUp, and lighting adjustments. This slightly reduced the log loss to 1.6809, suggesting minor improvements in the model’s ability to generalise.<br><br>Next, the model was retrained using fine_tune without MixUp, which led to a more significant improvement, bringing the log loss down to 1.5377. This suggests that the previous setup may have suffered from over-regularisation or instability introduced by MixUp. Removing MixUp and allowing all layers to be fine-tuned helped the model better capture the underlying patterns, leading to better-calibrated predictions. After some testing, I found that the best training progress was achieved using fine_tune without manually setting the learning rate, allowing FastAI to choose the learning rate automatically.<br><br>Further experimentation showed that training for 10 epochs resulted in overfitting, with the log loss increasing to 1.9076 — indicating the model performed worse on unseen data. Reducing the training to 6 epochs and introducing the Label Smoothing Cross Entropy loss function significantly improved the model’s performance, reducing the log loss to 1.4788. This custom loss helped smooth the model’s confidence on predictions and reduced overconfidence, leading to better generalisation.<br><br>The result further improved after applying Test Time Augmentation (TTA) during prediction, which averaged predictions over augmented versions of test images, helping reduce variance and boosting robustness. I also tried training for 8 epochs, but performance did not improve further — confirming that 6 epochs was the optimal point for this setup currently.<br><br>Overall, these results highlight the importance of careful tuning in training strategies, loss functions, and augmentations — all of which can meaningfully impact deep learning model performance on classification tasks.</div>
+            </div>
+        </div>
+        <div class="cell cell-markdown">
+            <div class="cell-prompt prompt-empty">&nbsp;</div>
+            <div class="cell-content">
+                <div class="markdown-cell"><h1>Save prediction </h1><br>- This stores the softmax prediction probabilities, which are essential for combining predictions from multiple models during ensembling.</div>
+            </div>
+        </div>
+        <div class="cell cell-code">
+            <div class="cell-prompt input-prompt">In [30]:</div>
+            <div class="cell-content">
+                <div class="input-area"><pre>np.save('resnet101_preds.npy', preds.numpy())</pre></div>
+            </div>
+        </div>
+        <div class="cell cell-code">
+            <div class="cell-prompt input-prompt">In [31]:</div>
+            <div class="cell-content">
+                <div class="input-area"><pre>learn.export('resnet101_model.pkl')</pre></div>
+            </div>
+        </div>
+    </div>
+    <footer class="export-footer">
+        Exported with <a href="https://www.runcell.dev/tool/ipynb-to-html">runcell</a> — convert notebooks to HTML or PDF anytime at runcell.dev.
+    </footer>
+</body>
+</html>
