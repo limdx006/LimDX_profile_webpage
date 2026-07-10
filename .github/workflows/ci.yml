@@ -39,17 +39,30 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
- 
-      - name: Check links in partials (resolved from site root)
+
+      - name: Simulate partial injection for link-checking
+        run: |
+          # Copy each partial to the repo root under a temp name.
+          # This matches runtime behaviour: section-loader.js fetches
+          # these files and injects them into index.html, so their
+          # relative links resolve against the site root, not partials/.
+          for f in partials/*.html; do
+            cp "$f" "./__check_$(basename "$f")"
+          done
+
+      - name: Check links in partials (resolved as if injected into index.html)
         uses: lycheeverse/lychee-action@v1
         with:
           args: >
             --no-progress
             --exclude-mail
-            --base .
-            './partials/**/*.html'
+            './__check_*.html'
           fail: true
- 
+
+      - name: Clean up temp files
+        if: always()
+        run: rm -f ./__check_*.html
+
       - name: Check links in standalone pages
         uses: lycheeverse/lychee-action@v1
         with:
