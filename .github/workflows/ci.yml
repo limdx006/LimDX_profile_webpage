@@ -46,7 +46,6 @@ jobs:
           args: >
             --no-progress
             --exclude-mail
-            --exclude 'kaggle\.com'
             './**/*.html'
           fail: true
 
