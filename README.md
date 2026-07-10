@@ -1,6 +1,13 @@
 # Lim Dong Xian — Portfolio Website
 
-A personal portfolio website with a dark glitch-aesthetic design, smooth scroll reveals, and partial HTML includes. Built with vanilla HTML, CSS, and JavaScript — no frameworks or build tools required.
+A personal portfolio website with a dark glitch-inspired hero section, smooth scrolling, partial HTML includes, and a responsive hamburger navigation menu. Built with vanilla HTML, CSS, and JavaScript — no frameworks or build tools required.
+
+---
+
+## Live Demo
+
+- GitHub Pages: https://limdx006.github.io/LimDX_profile_webpage/
+- Netlify: https://limdx-profile.netlify.app/
 
 ---
 
@@ -9,47 +16,47 @@ A personal portfolio website with a dark glitch-aesthetic design, smooth scroll 
 ```
 /
 ├── index.html                  # Main entry point (navbar, footer, section shells)
-│
 ├── css/
 │   ├── tokens.css              # Design tokens: colours, fonts, spacing variables
-│   ├── base.css                # Shared styles: reset, navbar, footer
-│   └── index.css               # Page-specific styles: hero, timeline, cards, etc.
-│
+│   ├── base.css                # Shared layout, navbar, footer, utilities
+│   ├── index.css               # Page-specific styles: hero, cards, sections, responsiveness
+│   └── kaggle.css              # Special style file for Kaggle html (converted from ipynb)
 ├── js/
-│   └── section-loader.js       # Fetches HTML partials and wires up interactions
-│
+│   └── section-loader.js       # Loads partial HTML sections, scroll reveal, smooth scroll, expand toggles
 ├── partials/
-│   ├── about.html              # Hero section with glitch name animation
-│   ├── education.html          # Timeline: JCU, Southern Uni, SPM, UPSR
-│   ├── experience.html         # Work history timeline
-│   ├── projects.html           # Personal & university project cards
-│   ├── skills.html             # Skill tag cards (3 categories)
-│   └── contact.html            # Contact info + message form
-│
-├── images/
-│   ├── JCU.jpg
-│   ├── Southern_Uni.jpg
-│   ├── Seri_Omega.png
-│   └── SJKC_Foon_Yew_2.jpeg
-│
-└── assets/
-    └── LimDongXian_Resume.pdf  # Downloadable resume
+│   ├── about.html              # Hero section, contact links, resume card
+│   ├── education.html          # Education timeline with expandable course lists
+│   ├── experience.html         # Work experience timeline
+│   ├── projects.html           # Personal and university project cards
+│   ├── skills.html             # Skill cards for IT, programming, and design tools
+│   └── contact.html            # Contact info, social links, and messaging section
+├── assets/
+│   ├── kaggle/DL/tasks         # Kaggle notebooks and HTML previews
+│   ├── pdf/                    # Preview pdf for report documentation
+│   └── readme/                 # Preview pages for assignment/project documentation
+│       ├── DM-assessment1.html
+│       ├── DL-assessment2.html
+│       ├── keylogger.html
+│       ├── nutrient-tracker.html
+│       ├── recipe-tracker.html
+│       └── template.html
+├── images/                      # Project and education image assets
+└── .github/workflows/ci.yml     # GitHub Actions deployment workflow
 ```
 
-> **Note:** The CSS files live under `/css/`, partials under `/partials/`, and JS under `/js/` on the server. The paths in the HTML files reflect this structure.
+> **Note:** The site loads section content from `partials/*.html` using `fetch()` in `js/section-loader.js`, so the project must be served over HTTP/HTTPS rather than opened directly from `file://`.
 
 ---
 
 ## Features
 
-- **Glitch hero animation** — CSS `clip`-based glitch effect on the name using `::before` / `::after` pseudo-elements and `@keyframes`.
-- **Partial HTML loading** — `section-loader.js` fetches each section's HTML via `fetch()` and injects it into `<section data-src="...">` shells, keeping `index.html` clean.
-- **Scroll reveal** — `IntersectionObserver` adds an `.in-view` class to each section when it enters the viewport, triggering a fade-and-slide-up transition.
-- **Smooth scroll** — Custom easing function (`ease-in-out`) overrides the browser default for anchor link navigation, accounting for the fixed navbar height.
-- **Expandable course lists** — Each education timeline entry has a toggle button that shows/hides the full subject list.
-- **Responsive layout** — Two-column hero collapses to single column on ≤ 860 px; navbar collapses to a hamburger menu on ≤ 700 px.
-- **Glassmorphism navbar** — Fixed top bar with `backdrop-filter: blur` and a subtle dark overlay.
-- **Active nav link highlight** — Gradient underline on the active section link.
+- **HTML partial loading** — `section-loader.js` fetches partial content for each section and injects it into the page dynamically.
+- **Smooth scrolling** — Custom anchor scrolling with easing and fixed-navbar offset.
+- **Scroll reveal** — `IntersectionObserver` adds `.in-view` classes for smooth section animations.
+- **Responsive navigation** — Desktop nav links plus a mobile hamburger menu for smaller screens.
+- **Expandable education lists** — Course details can be expanded or collapsed in the education section.
+- **Live resume download** — Resume PDF is available from `assets/pdf/LimDongXian_Resume.pdf`.
+- **Modern visual style** — Dark theme with glassmorphism navbar, accent colours, and clean section cards.
 
 ---
 
@@ -57,12 +64,10 @@ A personal portfolio website with a dark glitch-aesthetic design, smooth scroll 
 
 | Layer      | Technology                                      |
 |------------|-------------------------------------------------|
-| Markup     | HTML5 (semantic, partial includes)              |
+| Markup     | HTML5 (semantic structure, partial includes)     |
 | Styling    | CSS3 (custom properties, Flexbox, Grid, keyframes) |
-| Scripting  | Vanilla JavaScript (ES2017+, async/await, IntersectionObserver) |
-| Fonts      | Google Fonts — Poppins, Inter, Lora             |
-| Icons      | Font Awesome 6.5                                |
-| Hosting    | Any static file server (no build step needed)  |
+| Scripting  | Vanilla JavaScript (async/await, IntersectionObserver, fetch) |
+| Hosting    | Static site hosting (GitHub Pages / Netlify)    |
 
 ---
 
@@ -70,7 +75,7 @@ A personal portfolio website with a dark glitch-aesthetic design, smooth scroll 
 
 ### Prerequisites
 
-Any HTTP server that can serve static files. A few options:
+A simple static file server is required because the site loads partial HTML through `fetch()`.
 
 ```bash
 # Python (built-in)
@@ -78,19 +83,14 @@ python -m http.server 8080
 
 # Node.js (npx)
 npx serve .
-
-# VS Code
-# Use the "Live Server" extension
 ```
 
-> **Important:** The site uses `fetch()` to load HTML partials, so it **must** be served over HTTP/HTTPS. Opening `index.html` directly as a `file://` URL will cause the partials to fail to load due to CORS restrictions.
-
-### Running Locally
+### Run Locally
 
 1. Clone or download the repository.
-2. Place all files in their correct directories (see Project Structure above).
-3. Start a local server from the project root.
-4. Open `http://localhost:8080` in your browser.
+2. Open a terminal in the project root.
+3. Start a local HTTP server.
+4. Visit `http://localhost:8080` in your browser.
 
 ---
 
@@ -114,7 +114,7 @@ All visual tokens (colours, fonts, spacing) are defined in one place:
 }
 ```
 
-Change values here and the entire site retheming follows automatically.
+Adjust these values to retheme the site globally.
 
 ---
 
@@ -122,29 +122,27 @@ Change values here and the entire site retheming follows automatically.
 
 | Section    | File                      | Description                                                  |
 |------------|---------------------------|--------------------------------------------------------------|
-| About      | `partials/about.html`     | Hero with glitch name, degree title, bio, and info card      |
-| Education  | `partials/education.html` | Four entries (JCU BIT, Southern Uni Diploma, SPM, UPSR)     |
-| Experience | `partials/experience.html`| Customer Service / Operations role at The Sushi Shop         |
-| Projects   | `partials/projects.html`  | Personal projects + university assignments with tech tags     |
-| Skills     | `partials/skills.html`    | Three skill cards: Core Competencies, Programming, 3D Design |
-| Contact    | `partials/contact.html`   | Email / GitHub / LinkedIn info + contact form                 |
+| About      | `partials/about.html`     | Glitch hero, summary, contact links, and resume access       |
+| Education  | `partials/education.html` | Education timeline and expandable course details            |
+| Experience | `partials/experience.html`| Work history and role summary                                |
+| Projects   | `partials/projects.html`  | Personal projects and university assignments                 |
+| Skills     | `partials/skills.html`    | Skills and tools grouped by IT and design categories         |
+| Contact    | `partials/contact.html`   | Email, LinkedIn, GitHub links, and contact prompts           |
 
 ---
 
 ## Browser Support
 
-Requires a modern browser with support for:
+Works best in modern browsers that support:
 
 - CSS Custom Properties
 - `backdrop-filter`
 - `IntersectionObserver`
-- `fetch` API
+- `fetch`
 - `async/await`
-
-Covers all major evergreen browsers (Chrome, Firefox, Safari, Edge).
 
 ---
 
 ## License
 
-This project is personal portfolio work. Feel free to use it as inspiration, but please do not republish it as your own.
+Personal portfolio work. Feel free to use it for inspiration, but do not republish it as your own.
