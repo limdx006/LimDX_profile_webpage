@@ -1,0 +1,98 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+# Lets the deploy job publish to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Only one deploy at a time; don't cancel a deploy mid-flight
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+
+  # 1. Validate all HTML files (index.html + partials/*.html)
+  html-validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Validate HTML
+        uses: Cyb3r-Jak3/html5validator-action@v7.2.0
+        with:
+          root: .
+          extra: "--blacklist partials kaggle"
+
+  # 2. Check for broken internal/external links
+  link-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Simulate partial injection for link-checking
+        run: |
+          # Copy each partial to the repo root under a temp name.
+          # This matches runtime behaviour: section-loader.js fetches
+          # these files and injects them into index.html, so their
+          # relative links resolve against the site root, not partials/.
+          for f in partials/*.html; do
+            cp "$f" "./__check_$(basename "$f")"
+          done
+
+      - name: Check links in partials (resolved as if injected into index.html)
+        uses: lycheeverse/lychee-action@v1
+        with:
+          args: >
+            --no-progress
+            --exclude-mail
+            --exclude 'linkedin\.com'
+            './__check_*.html'
+          fail: true
+
+      - name: Clean up temp files
+        if: always()
+        run: rm -f ./__check_*.html
+
+      - name: Check links in standalone pages
+        uses: lycheeverse/lychee-action@v1
+        with:
+          args: >
+            --no-progress
+            --exclude-mail
+            --exclude 'linkedin\.com'
+            './*.html' './assets/**/*.html'
+          fail: true
+
+  # 3. Deploy to GitHub Pages (only on push to main, and only
+  #    if both checks above passed)
+  deploy:
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    needs: [html-validate, link-check]
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Upload site as Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

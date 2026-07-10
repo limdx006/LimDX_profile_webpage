@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jupyter Notebook — generated with runcell</title>
+    <meta name="description" content="Exported with runcell — convert .ipynb notebooks to HTML or PDF anytime at runcell.dev." />
+    <meta name="generator" content="runcell" />
+    <link rel="stylesheet" href="../../../css/kaggle.css">
+</head>
+<body>
+    <div class="notebook-container">
+        <div class="cell cell-markdown">
+            <div class="cell-prompt prompt-empty">&nbsp;</div>
+            <div class="cell-content">
+                <div class="markdown-cell"><h1>Import library</h1></div>
+            </div>
+        </div>
+        <div class="cell cell-code">
+            <div class="cell-prompt input-prompt">In [1]:</div>
+            <div class="cell-content">
+                <div class="input-area"><pre>import numpy as np
+import pandas as pd
+import torch
+from fastai.learner import load_learner
+from pathlib import Path</pre></div>
+            </div>
+        </div>
+        <div class="cell cell-code">
+            <div class="cell-prompt input-prompt">In [2]:</div>
+            <div class="cell-content">
+                <div class="input-area"><pre># Allow full column width display in Pandas
+pd.set_option('display.max_colwidth', None)</pre></div>
+            </div>
+        </div>
+        <div class="cell cell-markdown">
+            <div class="cell-prompt prompt-empty">&nbsp;</div>
+            <div class="cell-content">
+                <div class="markdown-cell"><h1>Load all model predictions files</h1></div>
+            </div>
+        </div>
+        <div class="cell cell-markdown">
+            <div class="cell-prompt prompt-empty">&nbsp;</div>
+            <div class="cell-content">
+                <div class="markdown-cell"><h2>Resnet 101</h2><br>- Notebook link: https:<wbr>//www.kaggle.com/code/limdx006/cp3501-2025-task-4-group-20-lim-resnet101<br>- Final result in task 4: 1.4031</div>
+            </div>
+        </div>
+        <div class="cell cell-code">
+            <div class="cell-prompt input-prompt">In [3]:</div>
+            <div class="cell-content">
+                <div class="input-area"><pre>resnet101_model = load_learner("/kaggle/input/cp3501-2025-task-4-group-20-lim-resnet101/resnet101_model.pkl", cpu=False)</pre></div>
+                <div class="output-area">
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-stream output-stderr">/usr/local/lib/python3.11/dist-packages/fastai/learner.py:455: UserWarning: load_learner` uses Python's insecure pickle module, which can execute malicious arbitrary code when loading. Only load files you trust.
+If you only need to load model weights and optimizer state, use the safe `Learner.load` instead.
+  warn("load_learner` uses Python's insecure pickle module, which can execute malicious arbitrary code when loading. Only load files you trust.\nIf you only need to load model weights and optimizer state, use the safe `Learner.load` instead.")
+</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="cell cell-markdown">
+            <div class="cell-prompt prompt-empty">&nbsp;</div>
+            <div class="cell-content">
+                <div class="markdown-cell"><h2>ResNet34</h2><br>- Notebook link: https:<wbr>//www.kaggle.com/code/richo7777/cp3501-2025-task-4-group-20-resnet34<br>- Final result in task 4: 1.5970</div>
+            </div>
+        </div>
+        <div class="cell cell-code">
+            <div class="cell-prompt input-prompt">In [4]:</div>
+            <div class="cell-content">
+                <div class="input-area"><pre>resnet34_model = load_learner("/kaggle/input/cp3501-2025-task-4-group-20-resnet34/resnet34_model.pkl", cpu=False)</pre></div>
+                <div class="output-area">
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-stream output-stderr">/usr/local/lib/python3.11/dist-packages/fastai/learner.py:455: UserWarning: load_learner` uses Python's insecure pickle module, which can execute malicious arbitrary code when loading. Only load files you trust.
+If you only need to load model weights and optimizer state, use the safe `Learner.load` instead.
+  warn("load_learner` uses Python's insecure pickle module, which can execute malicious arbitrary code when loading. Only load files you trust.\nIf you only need to load model weights and optimizer state, use the safe `Learner.load` instead.")
+</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="cell cell-markdown">
+            <div class="cell-prompt prompt-empty">&nbsp;</div>
+            <div class="cell-content">
+                <div class="markdown-cell"><h2>DenseNet121</h2><br>- Notebook link: https:<wbr>//www.kaggle.com/code/sinnatherpaing/cp3501-2025-task-4-6p-group-20<br>- Final result in task 4: 1.4956</div>
+            </div>
+        </div>
+        <div class="cell cell-code">
+            <div class="cell-prompt input-prompt">In [5]:</div>
+            <div class="cell-content">
+                <div class="input-area"><pre>densenet121_model = load_learner("/kaggle/input/cp3501-2025-task-4-6p-group-20/densenet121_model_6p.pkl", cpu=False)</pre></div>
+            </div>
+        </div>
+        <div class="cell cell-markdown">
+            <div class="cell-prompt prompt-empty">&nbsp;</div>
+            <div class="cell-content">
+                <div class="markdown-cell"><h2>ResNet50</h2><br>- Notebook link: https:<wbr>//www.kaggle.com/code/alexiawin/cp3501-2025-task3-resnet50augmentation-labelsmooth#Submit-to-Kaggle-&-Record-Public-Score<br>- Final result in task 4: 1.6262</div>
+            </div>
+        </div>
+        <div class="cell cell-code">
+            <div class="cell-prompt input-prompt">In [6]:</div>
+            <div class="cell-content">
+                <div class="input-area"><pre>resnet50_model = load_learner("/kaggle/input/cp3501-2025-task3-resnet50augmentation-labelsmooth/resnet50_preds.pkl", cpu=False)</pre></div>
+            </div>
+        </div>
+        <div class="cell cell-markdown">
+            <div class="cell-prompt prompt-empty">&nbsp;</div>
+            <div class="cell-content">
+                <div class="markdown-cell"><h2>beit_base_patch16_224</h2><br>- Notebook link: https:<wbr>//www.kaggle.com/code/choopwintchal/cp3501-2025-task-4-group-20-2nd-model/notebook<br>- Final result in task 4: 1.2476</div>
+            </div>
+        </div>
+        <div class="cell cell-code">
+            <div class="cell-prompt input-prompt">In [7]:</div>
+            <div class="cell-content">
+                <div class="input-area"><pre>beit224_model = load_learner("/kaggle/input/cp3501-2025-task-4-group-20-2nd-model/beit_base_patch16_224_Aug_TTA_LR.pkl", cpu=False)</pre></div>
+            </div>
+        </div>
+        <div class="cell cell-markdown">
+            <div class="cell-prompt prompt-empty">&nbsp;</div>
+            <div class="cell-content">
+                <div class="markdown-cell"><h1>Get test predictions</h1></div>
+            </div>
+        </div>
+        <div class="cell cell-markdown">
+            <div class="cell-prompt prompt-empty">&nbsp;</div>
+            <div class="cell-content">
+                <div class="markdown-cell"><h2>Load test data</h2></div>
+            </div>
+        </div>
+        <div class="cell cell-code">
+            <div class="cell-prompt input-prompt">In [8]:</div>
+            <div class="cell-content">
+                <div class="input-area"><pre># Read the CSV
+test_df = pd.read_csv('/kaggle/input/competition-files/test_features.csv')
+test_df.head()</pre></div>
+                <div class="output-area">
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt">Out[8]:</div>
+                        <div class="output-content">
+                            <div class="output-html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>id</th>
+      <th>filepath</th>
+      <th>site</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>ZJ016488</td>
+      <td>test_features/ZJ016488.jpg</td>
+      <td>S0082</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>ZJ016489</td>
+      <td>test_features/ZJ016489.jpg</td>
+      <td>S0040</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>ZJ016490</td>
+      <td>test_features/ZJ016490.jpg</td>
+      <td>S0040</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>ZJ016491</td>
+      <td>test_features/ZJ016491.jpg</td>
+      <td>S0041</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>ZJ016492</td>
+      <td>test_features/ZJ016492.jpg</td>
+      <td>S0040</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="cell cell-code">
+            <div class="cell-prompt input-prompt">In [9]:</div>
+            <div class="cell-content">
+                <div class="input-area"><pre># Get list of image paths
+test_dir = Path('/kaggle/input/competition-files/') 
+test_files = [test_dir/f for f in test_df['filepath']]
+print("Loaded image count:", len(test_files))     # should be 4464</pre></div>
+                <div class="output-area">
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-stream">Loaded image count: 4464
+</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="cell cell-markdown">
+            <div class="cell-prompt prompt-empty">&nbsp;</div>
+            <div class="cell-content">
+                <div class="markdown-cell"><h2>Get predictions (TTA) for all model</h2><br>- Use the model each datablock for the prediction</div>
+            </div>
+        </div>
+        <div class="cell cell-code">
+            <div class="cell-prompt input-prompt">In [10]:</div>
+            <div class="cell-content">
+                <div class="input-area"><pre>print("101 Predicting......") # Add output for debugging as it was taking longer than I though
+# tta_preds101, _ = resnet101_model.tta(dl=resnet101_model.dls.test_dl(test_files))
+print("101 Done!")</pre></div>
+                <div class="output-area">
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-stream">101 Predicting......
+101 Done!
+</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="cell cell-code">
+            <div class="cell-prompt input-prompt">In [11]:</div>
+            <div class="cell-content">
+                <div class="input-area"><pre>print("34 Predicting......") 
+tta_preds34, _ = resnet34_model.tta(dl=resnet34_model.dls.test_dl(test_files))
+print("34 Done!")</pre></div>
+                <div class="output-area">
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-stream">34 Predicting......
+</div>
+                        </div>
+                    </div>
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-html">
+<style>
+    /* Turns off some styling */
+    progress {
+        /* gets rid of default border in Firefox and Opera. */
+        border: none;
+        /* Needs to be in here for Safari polyfill so background images work as expected. */
+        background-size: auto;
+    }
+    progress:not([value]), progress:not([value])::-webkit-progress-bar {
+        background: repeating-linear-gradient(45deg, #7e7e7e, #7e7e7e 10px, #5c5c5c 10px, #5c5c5c 20px);
+    }
+    .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+        background: #F44336;
+    }
+</style>
+</div>
+                        </div>
+                    </div>
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-html">
+    <div>
+      <progress value='0' class='' max='5' style='width:300px; height:20px; vertical-align: middle;'></progress>
+      
+    </div>
+    
+</div>
+                        </div>
+                    </div>
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-html">
+<style>
+    /* Turns off some styling */
+    progress {
+        /* gets rid of default border in Firefox and Opera. */
+        border: none;
+        /* Needs to be in here for Safari polyfill so background images work as expected. */
+        background-size: auto;
+    }
+    progress:not([value]), progress:not([value])::-webkit-progress-bar {
+        background: repeating-linear-gradient(45deg, #7e7e7e, #7e7e7e 10px, #5c5c5c 10px, #5c5c5c 20px);
+    }
+    .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+        background: #F44336;
+    }
+</style>
+</div>
+                        </div>
+                    </div>
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-html"></div>
+                        </div>
+                    </div>
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-stream">34 Done!
+</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="cell cell-code">
+            <div class="cell-prompt input-prompt">In [12]:</div>
+            <div class="cell-content">
+                <div class="input-area"><pre>print("121 Predicting......")
+tta_preds121, _ = densenet121_model.tta(dl=densenet121_model.dls.test_dl(test_files))
+print("121 Done!")</pre></div>
+                <div class="output-area">
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-stream">121 Predicting......
+</div>
+                        </div>
+                    </div>
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-html">
+<style>
+    /* Turns off some styling */
+    progress {
+        /* gets rid of default border in Firefox and Opera. */
+        border: none;
+        /* Needs to be in here for Safari polyfill so background images work as expected. */
+        background-size: auto;
+    }
+    progress:not([value]), progress:not([value])::-webkit-progress-bar {
+        background: repeating-linear-gradient(45deg, #7e7e7e, #7e7e7e 10px, #5c5c5c 10px, #5c5c5c 20px);
+    }
+    .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+        background: #F44336;
+    }
+</style>
+</div>
+                        </div>
+                    </div>
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-html">
+    <div>
+      <progress value='0' class='' max='6' style='width:300px; height:20px; vertical-align: middle;'></progress>
+      
+    </div>
+    
+</div>
+                        </div>
+                    </div>
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-html">
+<style>
+    /* Turns off some styling */
+    progress {
+        /* gets rid of default border in Firefox and Opera. */
+        border: none;
+        /* Needs to be in here for Safari polyfill so background images work as expected. */
+        background-size: auto;
+    }
+    progress:not([value]), progress:not([value])::-webkit-progress-bar {
+        background: repeating-linear-gradient(45deg, #7e7e7e, #7e7e7e 10px, #5c5c5c 10px, #5c5c5c 20px);
+    }
+    .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+        background: #F44336;
+    }
+</style>
+</div>
+                        </div>
+                    </div>
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-html"></div>
+                        </div>
+                    </div>
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-stream">121 Done!
+</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="cell cell-code">
+            <div class="cell-prompt input-prompt">In [13]:</div>
+            <div class="cell-content">
+                <div class="input-area"><pre># Manually change the model to GPU as CPU=false is not working
+resnet50_model.model.to('cuda:0')
+resnet50_model.dls.device = torch.device('cuda:0')
+
+print("50 Predicting......") 
+tta_preds50, _ = resnet50_model.tta(dl=resnet50_model.dls.test_dl(test_files))
+print("50 Done!")</pre></div>
+                <div class="output-area">
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-stream">50 Predicting......
+</div>
+                        </div>
+                    </div>
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-html">
+<style>
+    /* Turns off some styling */
+    progress {
+        /* gets rid of default border in Firefox and Opera. */
+        border: none;
+        /* Needs to be in here for Safari polyfill so background images work as expected. */
+        background-size: auto;
+    }
+    progress:not([value]), progress:not([value])::-webkit-progress-bar {
+        background: repeating-linear-gradient(45deg, #7e7e7e, #7e7e7e 10px, #5c5c5c 10px, #5c5c5c 20px);
+    }
+    .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+        background: #F44336;
+    }
+</style>
+</div>
+                        </div>
+                    </div>
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-html">
+    <div>
+      <progress value='0' class='' max='5' style='width:300px; height:20px; vertical-align: middle;'></progress>
+      
+    </div>
+    
+</div>
+                        </div>
+                    </div>
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-html">
+<style>
+    /* Turns off some styling */
+    progress {
+        /* gets rid of default border in Firefox and Opera. */
+        border: none;
+        /* Needs to be in here for Safari polyfill so background images work as expected. */
+        background-size: auto;
+    }
+    progress:not([value]), progress:not([value])::-webkit-progress-bar {
+        background: repeating-linear-gradient(45deg, #7e7e7e, #7e7e7e 10px, #5c5c5c 10px, #5c5c5c 20px);
+    }
+    .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+        background: #F44336;
+    }
+</style>
+</div>
+                        </div>
+                    </div>
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-html"></div>
+                        </div>
+                    </div>
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-stream">50 Done!
+</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="cell cell-code">
+            <div class="cell-prompt input-prompt">In [14]:</div>
+            <div class="cell-content">
+                <div class="input-area"><pre>print("224 Predicting......") 
+# tta_preds224, _ = beit224_model.tta(dl=beit224_model.dls.test_dl(test_files))
+print("224 Done!")</pre></div>
+                <div class="output-area">
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-stream">224 Predicting......
+224 Done!
+</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="cell cell-markdown">
+            <div class="cell-prompt prompt-empty">&nbsp;</div>
+            <div class="cell-content">
+                <div class="markdown-cell"><h1>Average predictions</h1><br>- Try both medium and mean to compare result</div>
+            </div>
+        </div>
+        <div class="cell cell-code">
+            <div class="cell-prompt input-prompt">In [15]:</div>
+            <div class="cell-content">
+                <div class="input-area"><pre># Gather all predictions result
+# all_preds = [tta_preds101, tta_preds34, tta_preds121, tta_preds50, tta_preds224]
+# all_preds = [tta_preds101, tta_preds121, tta_preds224]
+all_preds = [tta_preds34, tta_preds121, tta_preds50]</pre></div>
+            </div>
+        </div>
+        <div class="cell cell-code">
+            <div class="cell-prompt input-prompt">In [16]:</div>
+            <div class="cell-content">
+                <div class="input-area"><pre># Stack Predictions
+print("Doing stacked preds......")
+stacked_preds = torch.stack(all_preds)
+print("Stacked preds done!")</pre></div>
+                <div class="output-area">
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-stream">Doing stacked preds......
+Stacked preds done!
+</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="cell cell-code">
+            <div class="cell-prompt input-prompt">In [17]:</div>
+            <div class="cell-content">
+                <div class="input-area"><pre># Mean ensemble
+ensemble_preds_mean = stacked_preds.mean(0)</pre></div>
+            </div>
+        </div>
+        <div class="cell cell-code">
+            <div class="cell-prompt input-prompt">In [18]:</div>
+            <div class="cell-content">
+                <div class="input-area"><pre># Median ensemble
+ensemble_preds_median, _ = stacked_preds.median(0)</pre></div>
+            </div>
+        </div>
+        <div class="cell cell-code">
+            <div class="cell-prompt input-prompt">In [19]:</div>
+            <div class="cell-content">
+                <div class="input-area"><pre># For observe and compare
+print("Mean preds:\n", ensemble_preds_mean[:5])
+print("Median preds:\n", ensemble_preds_median[:5])</pre></div>
+                <div class="output-area">
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-stream">Mean preds:
+ tensor([[0.1023, 0.0182, 0.1587, 0.3312, 0.0155, 0.2988, 0.0239, 0.0516],
+        [0.4219, 0.1757, 0.0509, 0.0552, 0.0496, 0.0266, 0.1670, 0.0530],
+        [0.3350, 0.0617, 0.0555, 0.2961, 0.0845, 0.0382, 0.0767, 0.0523],
+        [0.0147, 0.0149, 0.0177, 0.0450, 0.0262, 0.8513, 0.0126, 0.0175],
+        [0.3091, 0.1244, 0.0525, 0.0608, 0.0459, 0.0134, 0.2461, 0.1479]])
+Median preds:
+ tensor([[0.1033, 0.0174, 0.1093, 0.3528, 0.0168, 0.3430, 0.0241, 0.0582],
+        [0.4209, 0.1504, 0.0512, 0.0598, 0.0570, 0.0308, 0.1471, 0.0541],
+        [0.2655, 0.0531, 0.0477, 0.2096, 0.0847, 0.0340, 0.0717, 0.0559],
+        [0.0197, 0.0195, 0.0101, 0.0380, 0.0274, 0.8261, 0.0162, 0.0219],
+        [0.3130, 0.1230, 0.0572, 0.0431, 0.0348, 0.0133, 0.2042, 0.0867]])
+</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="cell cell-markdown">
+            <div class="cell-prompt prompt-empty">&nbsp;</div>
+            <div class="cell-content">
+                <div class="markdown-cell"><h1>Save Submission</h1></div>
+            </div>
+        </div>
+        <div class="cell cell-code">
+            <div class="cell-prompt input-prompt">In [20]:</div>
+            <div class="cell-content">
+                <div class="input-area"><pre>submission_template = pd.read_csv('/kaggle/input/competition-files/submission_format.csv')</pre></div>
+            </div>
+        </div>
+        <div class="cell cell-code">
+            <div class="cell-prompt input-prompt">In [21]:</div>
+            <div class="cell-content">
+                <div class="input-area"><pre># Get the class columns (all except 'id')
+class_cols = submission_template.columns[1:]</pre></div>
+            </div>
+        </div>
+        <div class="cell cell-code">
+            <div class="cell-prompt input-prompt">In [22]:</div>
+            <div class="cell-content">
+                <div class="input-area"><pre># Prepare mean predictions (convert tensor to numpy if needed)
+preds_mean_np = ensemble_preds_mean.numpy() if hasattr(ensemble_preds_mean, 'numpy') else ensemble_preds_mean</pre></div>
+            </div>
+        </div>
+        <div class="cell cell-code">
+            <div class="cell-prompt input-prompt">In [23]:</div>
+            <div class="cell-content">
+                <div class="input-area"><pre># Prepare median predictions (convert tensor to numpy if needed)
+preds_median_np = ensemble_preds_median.numpy() if hasattr(ensemble_preds_median, 'numpy') else ensemble_preds_median</pre></div>
+            </div>
+        </div>
+        <div class="cell cell-markdown">
+            <div class="cell-prompt prompt-empty">&nbsp;</div>
+            <div class="cell-content">
+                <div class="markdown-cell"><h2>Mean submission</h2></div>
+            </div>
+        </div>
+        <div class="cell cell-code">
+            <div class="cell-prompt input-prompt">In [24]:</div>
+            <div class="cell-content">
+                <div class="input-area"><pre># Create submission DataFrame for mean predictions
+submission_mean = submission_template.copy()
+submission_mean[class_cols] = preds_mean_np
+submission_mean.to_csv('submission_mean.csv', index=False)
+
+# Print first few rows to verify
+print("Mean Submission Sample:")
+print(pd.read_csv('submission_mean.csv').head())</pre></div>
+                <div class="output-area">
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-stream">Mean Submission Sample:
+         id  antelope_duiker      bird     blank  civet_genet       hog  \
+0  ZJ016488         0.102319  0.018163  0.158657     0.331167  0.015496   
+1  ZJ016489         0.421871  0.175746  0.050926     0.055229  0.049585   
+2  ZJ016490         0.334998  0.061679  0.055495     0.296102  0.084502   
+3  ZJ016491         0.014708  0.014942  0.017687     0.045036  0.026220   
+4  ZJ016492         0.309135  0.124370  0.052495     0.060759  0.045892   
+
+    leopard  monkey_prosimian    rodent  
+0  0.298775          0.023858  0.051566  
+1  0.026577          0.167026  0.053039  
+2  0.038219          0.076679  0.052327  
+3  0.851323          0.012614  0.017469  
+4  0.013380          0.246096  0.147873  
+</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="cell cell-markdown">
+            <div class="cell-prompt prompt-empty">&nbsp;</div>
+            <div class="cell-content">
+                <div class="markdown-cell"><h2>Median submission</h2></div>
+            </div>
+        </div>
+        <div class="cell cell-code">
+            <div class="cell-prompt input-prompt">In [25]:</div>
+            <div class="cell-content">
+                <div class="input-area"><pre># Create submission DataFrame for median predictions
+submission_median = submission_template.copy()
+submission_median[class_cols] = preds_median_np
+submission_median.to_csv('submission_median.csv', index=False)
+
+# Print first few rows to verify
+print("\nMedian Submission Sample:")
+print(pd.read_csv('submission_median.csv').head())</pre></div>
+                <div class="output-area">
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-stream">
+Median Submission Sample:
+         id  antelope_duiker      bird     blank  civet_genet       hog  \
+0  ZJ016488         0.103284  0.017436  0.109346     0.352768  0.016842   
+1  ZJ016489         0.420858  0.150414  0.051183     0.059825  0.056970   
+2  ZJ016490         0.265486  0.053056  0.047678     0.209590  0.084733   
+3  ZJ016491         0.019726  0.019516  0.010117     0.037975  0.027400   
+4  ZJ016492         0.312993  0.123047  0.057235     0.043090  0.034767   
+
+    leopard  monkey_prosimian    rodent  
+0  0.343049          0.024150  0.058207  
+1  0.030772          0.147139  0.054124  
+2  0.033975          0.071659  0.055897  
+3  0.826104          0.016196  0.021902  
+4  0.013334          0.204175  0.086676  
+</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="export-footer">
+        Exported with <a href="https://www.runcell.dev/tool/ipynb-to-html">runcell</a> — convert notebooks to HTML or PDF anytime at runcell.dev.
+    </footer>
+</body>
+</html>
