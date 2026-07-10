@@ -39,14 +39,24 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-
-      - name: Check for broken links
+ 
+      - name: Check links in partials (resolved from site root)
         uses: lycheeverse/lychee-action@v1
         with:
           args: >
             --no-progress
             --exclude-mail
-            './**/*.html'
+            --base .
+            './partials/**/*.html'
+          fail: true
+ 
+      - name: Check links in standalone pages
+        uses: lycheeverse/lychee-action@v1
+        with:
+          args: >
+            --no-progress
+            --exclude-mail
+            './*.html' './assets/**/*.html'
           fail: true
 
   # 3. Deploy to GitHub Pages (only on push to main, and only
